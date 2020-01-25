@@ -16,4 +16,9 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // Control Panel Variables
+    public static final int cpMotorID = 0;
+
+    public static final int pcm1ID = 0;
+    public static final int cpSoliniodID = 0;
 }
