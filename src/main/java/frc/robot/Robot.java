@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public static final ControlPanel controlPanel = new ControlPanel();
+  public static final ControlPanel controlPanel = new ControlPanel(Constants.i2c);
 
   /**
    * This function is run when the robot is first started up and should be used for any

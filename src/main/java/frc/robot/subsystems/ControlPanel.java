@@ -7,8 +7,12 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ControlPanel extends SubsystemBase {
@@ -16,33 +20,46 @@ public class ControlPanel extends SubsystemBase {
    * Creates a new ControlPanel.
    */
 
-   //REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT WILL BE ONE SPACE OFF
+  // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
+  // WILL BE ONE SPACE OFF
 
-  public ControlPanel() {
+  ColorSensorV3 colorSense;
+  Color detectedC;
 
+  public ControlPanel(Port i2c) {
+    colorSense = new ColorSensorV3(i2c);
+    
+  }
+
+  public void ColorDetect() {
+    detectedC = colorSense.getColor();
+    SmartDashboard.putNumber("red: ", detectedC.red);
+    SmartDashboard.putNumber("green: ", detectedC.green);
+    SmartDashboard.putNumber("blue: ", detectedC.blue);
   }
 
   public void PositionControl() {
-    //Retrieving the color sent to the robot by the field messaging system
+    // Retrieving the color sent to the robot by the field messaging system
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
     if (gameData.length() > 0) {
       switch (gameData.charAt(0)) {
-        case 'G' : 
-          SmartDashboard.putString("Spining to color", "Green");
+      case 'G':
+        SmartDashboard.putString("Spining to color", "Green");
         break;
-        case 'B' : 
-          SmartDashboard.putString("Spining to color", "Blue");
+      case 'B':
+        SmartDashboard.putString("Spining to color", "Blue");
         break;
-        case 'Y' : 
-          SmartDashboard.putString("Spining to color", "Yellow");
+      case 'Y':
+        SmartDashboard.putString("Spining to color", "Yellow");
         break;
-        case 'R' : 
-          SmartDashboard.putString("Spining to color", "Red");
+      case 'R':
+        SmartDashboard.putString("Spining to color", "Red");
         break;
       }
     } else {
       System.out.println("No gamedata");
     }
+
   }
 
   @Override
