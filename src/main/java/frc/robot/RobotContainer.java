@@ -38,8 +38,8 @@ public class RobotContainer {
 
   private final JoystickButton button1 = new JoystickButton(coDriver, 1);
   private final JoystickButton button2 = new JoystickButton(coDriver, 2);
-
-
+  private final JoystickButton button4 = new JoystickButton(coDriver, 4);
+  private final JoystickButton button5 = new JoystickButton(coDriver, 5);
   // private final climbyboi m_autoCommand = new climbyboi();
 
   public Joystick getdriverLeft(){
