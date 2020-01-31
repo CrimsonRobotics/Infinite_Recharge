@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.BeginCPSpin;
 import frc.robot.commands.CPSpin;
 import frc.robot.commands.ColorDetect;
 import frc.robot.commands.ExampleCommand;
@@ -54,7 +55,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    spinControlPanel.whenPressed(new CPSpin(Robot.controlPanel));
+    spinControlPanel.whenPressed(new BeginCPSpin());
   }
 
 

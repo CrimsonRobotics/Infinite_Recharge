@@ -7,34 +7,26 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.ControlPanel;
 
-public class CPSpin extends CommandBase {
+public class BeginCPSpin extends CommandBase {
   /**
-   * Creates a new CPSpin.
+   * Creates a new BeginCPSpin.
    */
-  private String color;
-  public CPSpin(String clr) {
+  public BeginCPSpin() {
     // Use addRequirements() here to declare subsystem dependencies.
-    
-    color = clr;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("hello");
-    System.out.println("Hello");
-    Robot.controlPanel.spinForColor(color);
+    Robot.controlPanel.PositionControl();
   }
 
   // Called once the command ends or is interrupted.
@@ -45,10 +37,6 @@ public class CPSpin extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.controlPanel.foundColor == true) {
-      return true;
-    } else{
-      return false;
-    }
+    return true;
   }
 }
