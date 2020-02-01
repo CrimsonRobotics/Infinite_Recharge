@@ -7,8 +7,10 @@
 
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -17,14 +19,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Drive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain driveTrain;
+  private final Joystick rightJoystick;
+  private final Joystick leftJoystick;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Drive(DriveTrain subsystem) {
+  public Drive(DriveTrain subsystem, Joystick rightJoystick, Joystick leftJoystick) {
     driveTrain = subsystem;
+    this.rightJoystick = rightJoystick;
+    this.leftJoystick = leftJoystick;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -37,7 +43,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.arcadeDrive(Robot.m_robotContainer.LeftJoystick(), turn);
+    driveTrain.arcadeDrive(this.rightJoystick, this.leftJoystick);
   }
 
   // Called once the command ends or is interrupted.

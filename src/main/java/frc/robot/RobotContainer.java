@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -28,10 +29,18 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Drive drive;
 
   public Joystick Joystick1;
   public Joystick Joystick2;
 
+  public Joystick rightJoystick(){
+    return Joystick1;
+  }
+
+  public Joystick leftJoystick(){
+    return Joystick2;
+  }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -40,12 +49,10 @@ public class RobotContainer {
     this.Joystick2 = new Joystick(1);
     // Configure the button bindings
     configureButtonBindings();
-    drivetrain.setDefaultCommand(
+    drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
+    drivetrain.setDefaultCommand(drive);
       // A split-stick arcade command, with forward/backward controlled by the left
       // hand, and turning controlled by the right.
-      new RunCommand(() -> drivetrain
-          .arcadeDrive(Joystick1.getY(),
-                       Joystick2.getX()), drivetrain));
   }
 
 
