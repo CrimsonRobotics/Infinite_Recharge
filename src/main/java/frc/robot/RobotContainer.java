@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
+  private DriveTrain drivetrain = Robot.driveTrain;
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 

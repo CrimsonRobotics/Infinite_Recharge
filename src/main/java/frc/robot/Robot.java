@@ -23,6 +23,8 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  public final static DriveTrain driveTrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.

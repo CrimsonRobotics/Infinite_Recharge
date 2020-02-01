@@ -20,4 +20,8 @@ public final class Constants {
     public final static int fRID = 2;
     public final static int bLID = 3;
     public final static int bRID = 4;
+
+    public final static double P = 1;
+    public final static double I = 0;
+    public final static double D = 0;
 }
