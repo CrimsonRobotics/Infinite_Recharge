@@ -21,12 +21,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private static final PIDCommand pidCommand = new PIDCommand();
-
-  // The robot's subsystems and commands are defined here...
-  private DriveTrain drivetrain = Robot.driveTrain;
-
-  // private final ExampleCommand m_autoCommand = new ExampleCommand(m);
 
   public Joystick Joystick1;
   public Joystick Joystick2;
@@ -37,9 +31,12 @@ public class RobotContainer {
   public RobotContainer() {
     this.Joystick1 = new Joystick(0);
     this.Joystick2 = new Joystick(1);
+
     // Configure the button bindings
     configureButtonBindings();
-    Robot.driveTrain.setDefaultCommand(pidCommand);
+
+    // Set default commands
+    Robot.driveTrain.setDefaultCommand(new PIDCommand());
   }
   public Joystick leftController(){
     return Joystick1;
