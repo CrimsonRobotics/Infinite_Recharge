@@ -33,9 +33,9 @@ public class DriveTrain extends SubsystemBase {
   }
   private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(FrontLeft, BackLeft);
   private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(FrontRight, BackRight);
-  private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+  private final DifferentialDrive diffDrive = new DifferentialDrive(leftMotors, rightMotors);
   public void arcadeDrive(double forward, double turn){
-    differentialDrive.arcadeDrive(forward, turn);
+    diffDrive.arcadeDrive(forward, turn);
   }
 
   @Override
