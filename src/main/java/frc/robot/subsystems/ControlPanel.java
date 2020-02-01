@@ -25,10 +25,11 @@ import com.revrobotics.CANSparkMax;
 
 public class ControlPanel extends SubsystemBase {
   /**
-   * Creates a new ControlPanel.
+   * Creates a new ControlPanel. wo
    */
 
-   // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
+  
+  // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
   // WILL BE ONE SPACE OFF
 
   ColorSensorV3 colorSense;
