@@ -8,9 +8,11 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
@@ -29,13 +31,16 @@ public class DriveTrain extends SubsystemBase {
     BackRight = new CANSparkMax(BR,MotorType.kBrushless);
 
   }
-  public void arcadeDrive(){
-    
+  private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(FrontLeft, BackLeft);
+  private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(FrontRight, BackRight);
+  private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+  public void arcadeDrive(double forward, double turn){
+    differentialDrive.arcadeDrive(forward, turn);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    
   }
 }

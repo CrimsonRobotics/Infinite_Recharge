@@ -14,6 +14,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,13 +40,14 @@ public class RobotContainer {
     this.Joystick2 = new Joystick(1);
     // Configure the button bindings
     configureButtonBindings();
+    drivetrain.setDefaultCommand(
+      // A split-stick arcade command, with forward/backward controlled by the left
+      // hand, and turning controlled by the right.
+      new RunCommand(() -> drivetrain
+          .arcadeDrive(Joystick1.getY(),
+                       Joystick2.getX()), drivetrain));
   }
-  public Joystick leftController(){
-    return Joystick1;
-  }
-  public Joystick rightController(){
-    return Joystick2;
-  }
+
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
