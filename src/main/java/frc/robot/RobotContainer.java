@@ -11,11 +11,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BeginCPSpin;
-import frc.robot.commands.CPSpin;
+// import frc.robot.commands.CPSpin;
 import frc.robot.commands.ColorDetect;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ControlPanel;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -27,10 +25,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final ControlPanel controlPanel = Robot.controlPanel;
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final ColorDetect colorDetect = new ColorDetect(controlPanel);
 
   //Joysticks and buttons
@@ -64,10 +60,6 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
   public Command getColorDetect(){
     return colorDetect;
   }

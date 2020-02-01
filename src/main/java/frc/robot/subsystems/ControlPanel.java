@@ -18,17 +18,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.CPSpin;
+// import frc.robot.commands.CPSpin;
 import com.revrobotics.CANSparkMax;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class ControlPanel extends SubsystemBase {
   /**
    * Creates a new ControlPanel.
    */
 
-  // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
+   // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
   // WILL BE ONE SPACE OFF
 
   ColorSensorV3 colorSense;
