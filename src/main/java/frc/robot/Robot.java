@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
 
   public static RobotContainer m_robotContainer;
 
-  public final static DriveTrain driveTrain = new DriveTrain();
+  public static DriveTrain driveTrain;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    driveTrain = new DriveTrain();
     m_robotContainer = new RobotContainer();
   }
 

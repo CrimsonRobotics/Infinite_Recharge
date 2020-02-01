@@ -81,30 +81,39 @@ public class DriveTrain extends PIDSubsystem {
       rightStickTime = timer.get();
     }
 
-    if((Math.abs(rightStick.getX()) <= .1) == true && timer.get() - rightStickTime >= .5 && Math.abs(leftEncoder.getVelocity() - rightEncoder.getVelocity()) >= 20) {
+    if((Math.abs(rightStick.getX()) <= .1) == true && timer.get() - rightStickTime >= .5 && Math.abs(leftEncoder.getVelocity() - rightEncoder.getVelocity()) >= 50) {
       final double leftVel = Math.abs(leftEncoder.getVelocity()); //RPM of the encoders
       final double rightVel = Math.abs(rightEncoder.getVelocity());
-      final double difference = rightVel - leftVel;
+      final double difference = Math.abs(rightVel) - Math.abs(leftVel);
       
 
       // SmartDashboard.putNumber("PID Output", getController().calculate(difference));
 
+      SmartDashboard.putBoolean("Compensating", true);
+
       if(difference <= 0) {
         //Left side is moving faster, left side would be max, right side would be minimum
         SmartDashboard.putNumber("Right Encoder", rightEncoder.getVelocity());
-        // setSetpoint(leftEncoder.getVelocity());
-        // SmartDashboard.putNumber("PID Output", getController().calculate(rightEncoder.getVelocity()));
+
         double max = leftVel;
         double min = rightVel;
-        
-        
+
+        double percent = Math.abs(max / min);
+        SmartDashboard.putNumber("Percentage faster", percent);
+        rightControllerGroup.set(rightControllerGroup.get() + (leftControllerGroup.get() * (percent / 100)));
       } else{
         //Right side is moving faster
         SmartDashboard.putNumber("Left Encoder", leftEncoder.getVelocity());
-        setSetpoint(rightEncoder.getVelocity());
-        SmartDashboard.putNumber("PID Output", getController().calculate(leftEncoder.getVelocity()));
+
+        double max = rightVel;
+        double min = leftVel;
+
+        double percent = Math.abs(max / min);
+        SmartDashboard.putNumber("Percentage faster", percent);
+        leftControllerGroup.set(leftControllerGroup.get() + (rightControllerGroup.get() * (percent / 100)));
       }
     } else {
+      SmartDashboard.putBoolean("Compensating", false);
       differentialDrive.arcadeDrive(-rightStick.getX(), -leftStick.getY());
     }
   }

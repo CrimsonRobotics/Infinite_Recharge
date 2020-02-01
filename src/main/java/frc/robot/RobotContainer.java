@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.PIDCommand;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -20,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.Command;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private static final PIDCommand pidCommand = new PIDCommand();
+
   // The robot's subsystems and commands are defined here...
   private DriveTrain drivetrain = Robot.driveTrain;
 
@@ -36,6 +39,7 @@ public class RobotContainer {
     this.Joystick2 = new Joystick(1);
     // Configure the button bindings
     configureButtonBindings();
+    Robot.driveTrain.setDefaultCommand(pidCommand);
   }
   public Joystick leftController(){
     return Joystick1;

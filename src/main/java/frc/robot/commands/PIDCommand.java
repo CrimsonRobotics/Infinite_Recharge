@@ -16,6 +16,7 @@ public class PIDCommand extends CommandBase {
    */
   public PIDCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.driveTrain);
   }
 
   // Called when the command is initially scheduled.
