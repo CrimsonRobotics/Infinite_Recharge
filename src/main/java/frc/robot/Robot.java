@@ -21,9 +21,9 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  public static RobotContainer m_robotContainer;
 
-  public final static DriveTrain driveTrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
+  public final static DriveTrain driveTrain = new DriveTrain();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -68,7 +68,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
