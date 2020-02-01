@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ControlPanel controlPanel = new ControlPanel(Constants.i2c);
+  private final ControlPanel controlPanel = Robot.controlPanel;
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final ColorDetect colorDetect = new ColorDetect(controlPanel);

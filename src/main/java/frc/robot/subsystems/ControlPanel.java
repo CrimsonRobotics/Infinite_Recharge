@@ -10,13 +10,18 @@ package frc.robot.subsystems;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.commands.CPSpin;
+import com.revrobotics.CANSparkMax;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class ControlPanel extends SubsystemBase {
   /**
@@ -41,6 +46,8 @@ public class ControlPanel extends SubsystemBase {
 
   public String searchingColor;
 
+  private final CANSparkMax panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
+
   public ControlPanel(Port i2c) {
     colorSense = new ColorSensorV3(i2c);
 
@@ -50,6 +57,8 @@ public class ControlPanel extends SubsystemBase {
     colorMatch.addColorMatch(greenMatch);
 
     SmartDashboard.putBoolean("Found color", false);
+    currentlySpinning = false;
+    SmartDashboard.putBoolean("Spinning", currentlySpinning);
   }
 
   public void ColorDetect() {
@@ -76,7 +85,12 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("green: ", detectedC.green);
     SmartDashboard.putNumber("blue: ", detectedC.blue);
 
+    SmartDashboard.putBoolean("Spinning", currentlySpinning);
+
+    panelSpinner.set(.1);
+
     if (currentlySpinning == true) {
+      panelSpinner.set(.1);
       if (colorString != "Unknown") {
         if (colorString == searchingColor) {
           currentlySpinning = false;
@@ -84,6 +98,8 @@ public class ControlPanel extends SubsystemBase {
           SmartDashboard.putBoolean("Found color", true);
         }
       }
+    } else {
+      panelSpinner.set(0);
     }
   }
 

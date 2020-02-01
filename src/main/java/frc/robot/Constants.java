@@ -27,6 +27,7 @@ public final class Constants {
 
     // Control Panel Variables
     public static final int cpMotorID = 0;
+    public static final int controlPanelSpinner = 50;
 
     public static final int pcm1ID = 0;
     public static final int cpSoliniodID = 0;
