@@ -47,6 +47,7 @@ public class RobotContainer {
   public RobotContainer() {
     this.Joystick1 = new Joystick(0);
     this.Joystick2 = new Joystick(1);
+
     // Configure the button bindings
     configureButtonBindings();
     drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
