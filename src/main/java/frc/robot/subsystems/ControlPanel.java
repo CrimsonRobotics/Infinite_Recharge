@@ -25,7 +25,7 @@ import com.revrobotics.CANSparkMax;
 
 public class ControlPanel extends SubsystemBase {
   /**
-   * Creates a new ControlPanel. wo
+   * Creates a new ControlPanel. 
    */
 
   
