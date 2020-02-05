@@ -25,5 +25,5 @@ public final class Constants {
     public final static double I = 0;
     public final static double D = 0;
 
-    public final static int pidTestSpark = 51;
+    public final static int testCan = 51;
 }

@@ -34,6 +34,8 @@ public class DriveTrain extends PIDSubsystem {
   public CANSparkMax can3 = new CANSparkMax(Constants.fRID, MotorType.kBrushless);
   public CANSparkMax can4 = new CANSparkMax(Constants.bRID, MotorType.kBrushless);
 
+  public CANSparkMax testCan = new CANSparkMax(Constants.testCan, MotorType.kBrushless);
+
   public final CANEncoder leftEncoder = new CANEncoder(can);
   public final CANEncoder rightEncoder = new CANEncoder(can3);
 
