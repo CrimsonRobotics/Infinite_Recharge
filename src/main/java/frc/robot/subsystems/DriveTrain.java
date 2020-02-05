@@ -45,6 +45,8 @@ public class DriveTrain extends PIDSubsystem {
   public double rightStickTime = 0;
   public double leftStickTime = 0;
 
+  public boolean leftStickDown = false;
+
   public DriveTrain() {
     super(new PIDController(Constants.P, Constants.I, Constants.D)); //Initialize PID values (not currently being used)
     timer.start();
@@ -65,8 +67,17 @@ public class DriveTrain extends PIDSubsystem {
       rightStickTime = timer.get(); //Set the last time the stick was used to the current time
     }
     if((Math.abs(leftStick.getY()) <= .1) == false) { //If left stick is being touched
-      leftStickTime = timer.get(); //Set the last time the stick was used to the current time
+       if (leftStickDown == false) {
+         leftStickTime = timer.get();
+         leftStickDown = true;
+       }
+    } else {
+      leftStickDown = false;
     }
+
+    SmartDashboard.putNumber("Encoder difference", Math.abs(Math.abs(leftEncoder.getVelocity()) - Math.abs(rightEncoder.getVelocity())));
+    SmartDashboard.putNumber("Left stick cooldown", timer.get() - leftStickTime);
+    //SmartDashboard.putBoolean("Left stick touched", timer.get() - leftStickTime >= 1);
 
     //CONDITIONS:
     //left stick is being touched (so it doesn't try to correct itself while stopping)
@@ -74,7 +85,9 @@ public class DriveTrain extends PIDSubsystem {
     //right stick is not being touched
     //right stick has not been touched for .4 seconds
     //one encoder is going at least 50 ticks faster than the other
-    if((Math.abs(leftStick.getY()) >= .1) && timer.get() - leftStickTime >= .3 && (Math.abs(rightStick.getX()) <= .1) == true && timer.get() - rightStickTime >= .4 && Math.abs(Math.abs(leftEncoder.getVelocity()) - Math.abs(rightEncoder.getVelocity())) >= 50) {
+    if((Math.abs(leftStick.getY()) >= .1) && timer.get() - leftStickTime >= .7 && (Math.abs(rightStick.getX()) <= .1) == true && timer.get() - rightStickTime >= .4 && Math.abs(Math.abs(leftEncoder.getVelocity()) - Math.abs(rightEncoder.getVelocity())) >= 5) {
+    //if(timer.get() - leftStickTime <= 1) {
+      SmartDashboard.putBoolean("Compensating possible", true);
       final double leftVel = Math.abs(leftEncoder.getVelocity()); //RPM of the encoders
       final double rightVel = Math.abs(rightEncoder.getVelocity());
       final double difference = Math.abs(rightVel) - Math.abs(leftVel);
@@ -90,7 +103,7 @@ public class DriveTrain extends PIDSubsystem {
 
         double percent = Math.abs(max / min); //Find how much faster the left side is moving than the right
         SmartDashboard.putNumber("Percentage faster", percent);
-        rightControllerGroup.set(rightControllerGroup.get() + (leftControllerGroup.get() * (percent / 100))); //Apply corrective force
+        rightControllerGroup.set(rightControllerGroup.get() + (rightControllerGroup.get() * (percent / 100))); //Apply corrective force
       } else{
         //Right side is moving faster
         SmartDashboard.putNumber("Left Encoder", leftEncoder.getVelocity());
@@ -100,10 +113,11 @@ public class DriveTrain extends PIDSubsystem {
 
         double percent = Math.abs(max / min);
         SmartDashboard.putNumber("Percentage faster", percent);
-        leftControllerGroup.set(leftControllerGroup.get() + (rightControllerGroup.get() * (percent / 100)));
+        leftControllerGroup.set(leftControllerGroup.get() + (leftControllerGroup.get() * (percent / 100)));
       }
     } else {
       //If any of the above conditions are not met, run this
+      SmartDashboard.putBoolean("Compensating possible", false);
       SmartDashboard.putBoolean("Compensating", false);
       differentialDrive.arcadeDrive(-rightStick.getX(), -leftStick.getY());
     }
