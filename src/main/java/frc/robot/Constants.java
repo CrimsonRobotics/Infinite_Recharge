@@ -20,4 +20,9 @@ public final class Constants {
     public final static int fRID = 52;
     public final static int bLID = 54;
     public final static int bRID = 53;
+
+    public final static int IntakeLeft = 53;
+    public final static int IntakeRight = 51;
+
+    // public final static int intakeSolenoid = 0;
 }
