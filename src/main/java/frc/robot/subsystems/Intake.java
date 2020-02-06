@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -24,7 +25,8 @@ public class Intake extends SubsystemBase {
   public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_RIGHT, MotorType.kBrushless);
 
   public DoubleSolenoid solenoid = new DoubleSolenoid(Constants.INTAKE_MODULE, 0, 1);
-  public DoubleSolenoid solenoid2 = new DoubleSolenoid(Constants.INTAKE_MODULE, 2, 3);
+  // public DoubleSolenoid solenoid2 = new DoubleSolenoid(Constants.INTAKE_MODULE, 2, 3);
+  public Solenoid singleSolenoid = new Solenoid(Constants.INTAKE_MODULE, 3);
 
   // public DoubleSolenoid solenoid;
   // public DoubleSolenoid solenoid2;
@@ -35,21 +37,24 @@ public class Intake extends SubsystemBase {
 
   public void IntakeIn() {
     solenoid.set(Value.kForward);
-    solenoid2.set(Value.kForward);
+    // solenoid2.set(Value.kForward);
+    singleSolenoid.set(true);
     intakeLeft.set(.5);
     intakeRight.set(.5);
   }
 
   public void IntakeStop() {
     solenoid.set(Value.kOff);
-    solenoid2.set(Value.kOff);
+    singleSolenoid.set(false);
+    // solenoid2.set(Value.kOff);
     intakeLeft.set(0);
     intakeRight.set(0);
   }
 
   public void IntakeOut() {
     solenoid.set(Value.kReverse);
-    solenoid2.set(Value.kReverse);
+    singleSolenoid.set(false);
+    // solenoid2.set(Value.kReverse);
     intakeLeft.set(-.5);
     intakeRight.set(-.5);
   }
