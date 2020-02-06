@@ -13,11 +13,18 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 // import frc.robot.commands.CPSpin;
 import com.revrobotics.CANSparkMax;
 // import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -25,15 +32,16 @@ import com.revrobotics.CANSparkMax;
 
 public class ControlPanel extends SubsystemBase {
   /**
-   * Creates a new ControlPanel. 
+   * Creates a new ControlPanel.
    */
 
-  
   // REMEMBER THAT THE COLOR SENSOR IS NOT DIRECTLY ABOVE THE CORRECT COLOR, IT
   // WILL BE ONE SPACE OFF
 
   ColorSensorV3 colorSense;
   Color detectedC;
+
+  String trajectoryJSON = "paths/Test.wpilib.json";
 
   private final ColorMatch colorMatch = new ColorMatch();
 
@@ -50,6 +58,12 @@ public class ControlPanel extends SubsystemBase {
   private final CANSparkMax panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
 
   public ControlPanel(Port i2c) {
+    try {
+      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+      Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+    } catch (IOException ex) {
+      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+    }
     colorSense = new ColorSensorV3(i2c);
 
     colorMatch.addColorMatch(blueMatch);
@@ -108,12 +122,12 @@ public class ControlPanel extends SubsystemBase {
     // Retrieving the color sent to the robot by the field messaging system
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-    //Tell if the robot is already trying to spin the control panel
-    if(currentlySpinning == true) {
+    // Tell if the robot is already trying to spin the control panel
+    if (currentlySpinning == true) {
       System.out.println("Control panel mechanism is already spinning");
       return;
     }
-    
+
     if (gameData.length() > 0) {
       currentlySpinning = true;
       SmartDashboard.putBoolean("Found color", false);
@@ -141,9 +155,10 @@ public class ControlPanel extends SubsystemBase {
   }
 
   public void spinForColor(String color) {
-    //color sensing code
+    // color sensing code
 
-    //set foundColor to true when the correct color is found, the command will stop running
+    // set foundColor to true when the correct color is found, the command will stop
+    // running
     System.out.println("Recieved spin command for " + color);
     // foundColor = true;
   }
