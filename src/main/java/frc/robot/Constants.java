@@ -21,8 +21,8 @@ public final class Constants {
     public final static int bLID = 54;
     public final static int bRID = 53;
 
-    public final static int IntakeLeft = 53;
-    public final static int IntakeRight = 51;
+    public final static int INTAKE_LEFT = 53;
+    public final static int INTAKE_RIGHT = 51;
 
-    // public final static int intakeSolenoid = 0;
+    public final static int INTAKE_MODULE = 12;
 }
