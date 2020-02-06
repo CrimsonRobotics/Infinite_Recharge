@@ -27,12 +27,12 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ControlPanel controlPanel = Robot.controlPanel;
 
-  private final ColorDetect colorDetect = new ColorDetect(controlPanel);
+  // private final ColorDetect colorDetect = new ColorDetect(controlPanel);
 
   //Joysticks and buttons
-  private final Joystick driverRight = new Joystick(Constants.driverRight);
+  // private final Joystick driverRight = new Joystick(Constants.driverRight);
   private final Joystick driverLeft = new Joystick(Constants.driverLeft);
-  private final Joystick coDriver = new Joystick(Constants.coDriver);
+  // private final Joystick coDriver = new Joystick(Constants.coDriver);
   private final JoystickButton spinControlPanel = new JoystickButton(driverLeft, 1);
 
   /**
@@ -41,7 +41,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    controlPanel.setDefaultCommand(colorDetect);
+    controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
   }
 
   /**
@@ -60,7 +60,4 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getColorDetect(){
-    return colorDetect;
-  }
 }

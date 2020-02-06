@@ -21,9 +21,9 @@ import edu.wpi.first.wpilibj.I2C;
  */
 public final class Constants {
     //Joysticks
-    public static final int driverRight = 1;
+    // public static final int driverRight = 1;
     public static final int driverLeft = 0;
-    public static final int coDriver = 4;
+    // public static final int coDriver = 4;
 
     // Control Panel Variables
     public static final int cpMotorID = 0;

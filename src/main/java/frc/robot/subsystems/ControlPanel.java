@@ -50,10 +50,10 @@ public class ControlPanel extends SubsystemBase {
   private final Color yellowMatch = ColorMatch.makeColor(0.361, 0.524, 0.113);
   private final Color greenMatch = ColorMatch.makeColor(0.197, 0.561, 0.240);
 
+  public String searchingColor;
+
   public boolean foundColor = false;
   public boolean currentlySpinning = false;
-
-  public String searchingColor;
 
   private final CANSparkMax panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
 
@@ -64,6 +64,10 @@ public class ControlPanel extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
+    
+    currentlySpinning = false;
+    foundColor = false;
+
     colorSense = new ColorSensorV3(i2c);
 
     colorMatch.addColorMatch(blueMatch);
@@ -72,8 +76,7 @@ public class ControlPanel extends SubsystemBase {
     colorMatch.addColorMatch(greenMatch);
 
     SmartDashboard.putBoolean("Found color", false);
-    currentlySpinning = false;
-    SmartDashboard.putBoolean("Spinning", currentlySpinning);
+    SmartDashboard.putBoolean("Spinning", false);
   }
 
   public void ColorDetect() {
@@ -100,12 +103,9 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("green: ", detectedC.green);
     SmartDashboard.putNumber("blue: ", detectedC.blue);
 
-    SmartDashboard.putBoolean("Spinning", currentlySpinning);
-
-    panelSpinner.set(.1);
-
     if (currentlySpinning == true) {
-      panelSpinner.set(.1);
+      SmartDashboard.putBoolean("Spinning", true);
+      panelSpinner.set(.3);
       if (colorString != "Unknown") {
         if (colorString == searchingColor) {
           currentlySpinning = false;
@@ -114,6 +114,7 @@ public class ControlPanel extends SubsystemBase {
         }
       }
     } else {
+      SmartDashboard.putBoolean("Spinning", false);
       panelSpinner.set(0);
     }
   }
@@ -159,7 +160,7 @@ public class ControlPanel extends SubsystemBase {
 
     // set foundColor to true when the correct color is found, the command will stop
     // running
-    System.out.println("Recieved spin command for " + color);
+    System.out.println("Received spin command for " + color);
     // foundColor = true;
   }
 
