@@ -28,9 +28,6 @@ public class Intake extends SubsystemBase {
   // public DoubleSolenoid solenoid2 = new DoubleSolenoid(Constants.INTAKE_MODULE, 2, 3);
   public Solenoid singleSolenoid = new Solenoid(Constants.INTAKE_MODULE, 3);
 
-  // public DoubleSolenoid solenoid;
-  // public DoubleSolenoid solenoid2;
-
   public Intake() {
 
   }
