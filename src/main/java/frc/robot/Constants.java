@@ -24,5 +24,7 @@ public final class Constants {
     public final static int INTAKE_LEFT = 53;
     public final static int INTAKE_RIGHT = 51;
 
+    public final static int OUTTAKE = 0;
+
     public final static int INTAKE_MODULE = 10;
 }

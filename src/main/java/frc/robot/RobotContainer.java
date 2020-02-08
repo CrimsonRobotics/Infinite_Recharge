@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 // import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.IntakeOut;
 import frc.robot.commands.IntakeStop;
@@ -69,8 +70,14 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //Intake
     intakeIn.whenPressed(new IntakeIn());
+    intakeIn.whenReleased(new IntakeCatchExtra());
+
+    //Outtake
     intakeOut.whenPressed(new IntakeOut());
+
+    //Stop
     intakeStop.whenPressed(new IntakeStop());
   }
 

@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class IntakeOutAndStop extends SequentialCommandGroup {
+public class IntakeCatchExtra extends SequentialCommandGroup {
   /**
-   * Creates a new SequentialTesting.
+   * Creates a new IntakeCatchExtra.
    */
-  public IntakeOutAndStop() {
-    super(new IntakeOut(), new WaitCommand(5), new IntakeStop());
+  public IntakeCatchExtra() {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    super(new IntakeReverse(), new WaitCommand(.4), new IntakeStop());
   }
 }
