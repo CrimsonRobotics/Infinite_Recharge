@@ -30,9 +30,7 @@ public class Intake extends SubsystemBase {
 
   public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE, MotorType.kBrushless);
 
-  public DoubleSolenoid solenoid = new DoubleSolenoid(Constants.INTAKE_MODULE, 0, 1);
-  public DoubleSolenoid solenoid2 = new DoubleSolenoid(Constants.INTAKE_MODULE, 2, 3);
-  // public Solenoid singleSolenoid = new Solenoid(Constants.INTAKE_MODULE, 3);
+  public DoubleSolenoid outtakeDoorSolenoid = new DoubleSolenoid(Constants.INTAKE_MODULE, 0, 1);
 
   public Intake() {
   }
@@ -47,7 +45,7 @@ public class Intake extends SubsystemBase {
     intakeRight.set(0);
   }
 
-  public void IntakeOut() {
+  public void IntakeOut() { //Spit out balls via intake
     intakeLeft.set(-intakeSpeed);
     intakeRight.set(-intakeSpeed);
   }
@@ -56,20 +54,24 @@ public class Intake extends SubsystemBase {
     outtake.set(outtakeMoveSpeed);
   }
 
-  public void OuttakeShoot() { //Opens the shooter door and shoots
-    solenoid.set(Value.kForward);
-    solenoid2.set(Value.kForward);
+  public void OuttakeShoot() { //Outtake forwards
     outtake.set(outtakeShootSpeed);
   }
 
-  public void OuttakeReverse() {
+  public void OuttakeReverse() { //Outtake reverse
     outtake.set(-outtakeMoveSpeed);
   }
 
-  public void OuttakeStop() { //Closes door and stops conveyer
-    solenoid.set(Value.kReverse);
-    solenoid2.set(Value.kReverse);
+  public void OuttakeStop() { //Stops conveyor
     outtake.set(0);
+  }
+
+  public void OuttakeDoorOpen() { //Opens outtake door
+    outtakeDoorSolenoid.set(Value.kForward);
+  }
+
+  public void OuttakeDoorClose() { //Closes outtake door
+    outtakeDoorSolenoid.set(Value.kReverse);
   }
 
   @Override

@@ -16,6 +16,9 @@ import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.IntakeOut;
 import frc.robot.commands.IntakeStop;
+import frc.robot.commands.OuttakeSequence;
+import frc.robot.commands.OuttakeShoot;
+import frc.robot.commands.OuttakeStop;
 // import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -40,8 +43,8 @@ public class RobotContainer {
   public Joystick Joystick2 = new Joystick(1);
 
   public JoystickButton intakeIn = new JoystickButton(Joystick1, 1);
-  public JoystickButton intakeOut = new JoystickButton(Joystick1, 2);
-  public JoystickButton intakeStop = new JoystickButton(Joystick1, 3);
+  public JoystickButton Outtake = new JoystickButton(Joystick1, 2);
+  // public JoystickButton intakeStop = new JoystickButton(Joystick1, 3);
 
   public Joystick rightJoystick(){
     return Joystick1;
@@ -75,10 +78,10 @@ public class RobotContainer {
     intakeIn.whenReleased(new IntakeCatchExtra());
 
     //Outtake
-    intakeOut.whenPressed(new IntakeOut());
+    Outtake.whenPressed(new OuttakeSequence());
 
     //Stop
-    intakeStop.whenPressed(new IntakeStop());
+    // intakeStop.whenPressed(new IntakeStop());
   }
 
 
