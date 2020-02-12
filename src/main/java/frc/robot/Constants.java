@@ -24,6 +24,8 @@ public final class Constants {
     public final static int INTAKE_LEFT = 57;
     public final static int INTAKE_RIGHT = 56;
 
+    public final static double INTAKE_SPEED = -.7;
+
     public final static int OUTTAKE = 0;
 
     public final static int INTAKE_MODULE = 10;

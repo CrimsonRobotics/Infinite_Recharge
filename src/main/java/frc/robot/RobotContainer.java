@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeStop;
 import frc.robot.commands.OuttakeSequence;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -67,7 +68,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Intake
-    intakeIn.whenPressed(new IntakeIn());
+    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
     //Outtake

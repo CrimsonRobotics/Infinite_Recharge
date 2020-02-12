@@ -23,7 +23,7 @@ public class Intake extends SubsystemBase {
   public final double outtakeMoveSpeed = .5;
   public final double outtakeShootSpeed = .8;
 
-  public final double intakeSpeed =  .5;
+  public final double intakeSpeed =  -.5;
 
   public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_LEFT, MotorType.kBrushless);
   public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_RIGHT, MotorType.kBrushless);
@@ -35,9 +35,9 @@ public class Intake extends SubsystemBase {
   public Intake() {
   }
 
-  public void IntakeIn() {
-    intakeLeft.set(intakeSpeed);
-    intakeRight.set(intakeSpeed);
+  public void IntakeIn(double speed) {
+    intakeLeft.set(speed);
+    intakeRight.set(speed);
   }
 
   public void IntakeStop() {
@@ -45,9 +45,9 @@ public class Intake extends SubsystemBase {
     intakeRight.set(0);
   }
 
-  public void IntakeOut() { //Spit out balls via intake
-    intakeLeft.set(-intakeSpeed);
-    intakeRight.set(-intakeSpeed);
+  public void IntakeOut(double speed) { //Spit out balls via intake
+    intakeLeft.set(-speed);
+    intakeRight.set(-speed);
   }
 
   public void OuttakeForward() { //For moving balls forward without shooting

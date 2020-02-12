@@ -8,15 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class IntakeIn extends CommandBase {
   /**
    * Creates a new IntakeIn.
    */
-  public IntakeIn() {
+  double motorSpeed;
+  public IntakeIn(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake);
+    motorSpeed = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +30,7 @@ public class IntakeIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.IntakeIn();
+    Robot.intake.IntakeIn(motorSpeed);
   }
 
   // Called once the command ends or is interrupted.
