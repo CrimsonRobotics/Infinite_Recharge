@@ -10,12 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.Drive;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -27,12 +26,17 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
+  private final Climber climber = new Climber(Constants.bRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final WinchStop winchStop = new WinchStop(climber);
   private final Drive drive;
 
   public Joystick Joystick1;
   public Joystick Joystick2;
+
+  public JoystickButton winchUpButton;
+  public JoystickButton winchDownButton;
 
   public Joystick rightJoystick(){
     return Joystick1;
@@ -48,10 +52,14 @@ public class RobotContainer {
     this.Joystick1 = new Joystick(0);
     this.Joystick2 = new Joystick(1);
 
+    winchUpButton = new JoystickButton(Joystick1, 3);
+    winchDownButton = new JoystickButton(Joystick1, 4);
+
     // Configure the button bindings
     configureButtonBindings();
     drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
     drivetrain.setDefaultCommand(drive);
+    climber.setDefaultCommand(winchStop);
       // A split-stick arcade command, with forward/backward controlled by the left
       // hand, and turning controlled by the right.
   }
@@ -64,6 +72,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    winchUpButton.whileHeld(new WinchUp());
+    winchDownButton.whileHeld(new WinchDown());
   }
 
 
