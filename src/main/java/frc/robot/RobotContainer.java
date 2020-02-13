@@ -27,20 +27,12 @@ public class RobotContainer {
   private int climberMotor1;
   private int lateralMotor;
   private int climberMotor2;
-  // The robot's subsystems and commands are defined here...
-  // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
-  private final Climber climber = new Climber(Constants.bRID);
-
-  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final WinchStop winchStop = new WinchStop(climber);
-  private final Drive drive;
 
   public Joystick Joystick1;
   public Joystick Joystick2;
 
-  public JoystickButton winchUpButton;
-  public JoystickButton winchDownButton;
+  public JoystickButton elevatorUpButton;
+  public JoystickButton elevatorDownButton;
 
   public Joystick rightJoystick(){
     return Joystick1;
@@ -56,16 +48,13 @@ public class RobotContainer {
     this.Joystick1 = new Joystick(0);
     this.Joystick2 = new Joystick(1);
 
-    winchUpButton = new JoystickButton(Joystick1, 3);
-    winchDownButton = new JoystickButton(Joystick1, 4);
+    elevatorUpButton = new JoystickButton(Joystick1, 3);
+    elevatorDownButton = new JoystickButton(Joystick1, 1);
 
     // Configure the button bindings
     configureButtonBindings();
-    drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
-    drivetrain.setDefaultCommand(drive);
-    climber.setDefaultCommand(winchStop);
-      // A split-stick arcade command, with forward/backward controlled by the left
-      // hand, and turning controlled by the right.
+
+    // Robot.climber.setDefaultCommand(new ElevatorStop());
   }
 
 
@@ -76,8 +65,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    winchUpButton.whileHeld(new WinchUp());
-    winchDownButton.whileHeld(new WinchDown());
+    elevatorUpButton.whenPressed(new ElevatorUp());
+    elevatorUpButton.whenReleased(new ElevatorStop());
+    elevatorDownButton.whenPressed(new ElevatorDown());
+    elevatorDownButton.whenReleased(new ElevatorStop());
   }
 
 

@@ -17,22 +17,22 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Climber.
    */
-  static CANSparkMax winchMotor;
+  static CANSparkMax elevatorMotor;
 
   public Climber(int bRID) {
-    winchMotor = new CANSparkMax(bRID, MotorType.kBrushed);
+    elevatorMotor = new CANSparkMax(bRID, MotorType.kBrushed);
   }
 
-  public static void WinchUp() {
-    winchMotor.set(0.3);
+  public static void elevatorUp() {
+    elevatorMotor.set(0.3);
   }
 
-  public static void WinchDown() {
-    winchMotor.set(-0.3);
+  public static void elevatorDown() {
+    elevatorMotor.set(-0.1);
   }
 
-  public static void WinchStop() {
-    winchMotor.set(0.15);
+  public static void elevatorStop() {
+    elevatorMotor.set(0.13);
   }
 
   @Override

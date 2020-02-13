@@ -10,7 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
+// import frc.robot.subsystems.DriveTrain;
+// import frc.robot.subsystems.climberSubsystem;
+import frc.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,8 +25,7 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer;
   public static Object climberSubsystem;
 
-  public static final climberSubsystem climberElevator = new climberSubsystem(Constants.climberMotor1, Constants.climberMotor2, Constants.lateralMotor);
-
+  public static Climber climber = new Climber(Constants.bRID);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
