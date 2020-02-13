@@ -20,4 +20,8 @@ public final class Constants {
     public final static int fRID = 52;
     public final static int bLID = 54;
     public final static int bRID = 53;
+    public static int climberMotor1 = 0;
+    public static int climberMotor2 = 1;
+    public static int lateralMotor = 2;
+    
 }
