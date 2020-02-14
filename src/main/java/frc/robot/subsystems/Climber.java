@@ -7,9 +7,12 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.AlternateEncoderType;
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.*;
 
@@ -17,10 +20,15 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Climber.
    */
+public static double lastEncoderPosition;
+
   static CANSparkMax elevatorMotor;
+
+  static CANEncoder elevatorEncoder = new CANEncoder(elevatorMotor);
 
   public Climber(int bRID) {
     elevatorMotor = new CANSparkMax(bRID, MotorType.kBrushed);
+    lastEncoderPosition = elevatorEncoder.getPosition();
   }
 
   public static void elevatorUp() {
@@ -33,6 +41,8 @@ public class Climber extends SubsystemBase {
 
   public static void elevatorStop() {
     elevatorMotor.set(0.13);
+    SmartDashboard.putNumber("Last encoder position", lastEncoderPosition);
+    lastEncoderPosition = elevatorEncoder.getPosition();
   }
 
   @Override
