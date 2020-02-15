@@ -25,6 +25,7 @@ public class Climber extends SubsystemBase {
   static CANEncoder elevatorEncoder;
   private static double goalPoint;
   private static int variance = 450;
+  private static boolean goalPointSet;
 
   public Climber(int bRID) {
     elevatorMotor = new CANSparkMax(bRID, MotorType.kBrushed);
@@ -33,28 +34,30 @@ public class Climber extends SubsystemBase {
 
   public static void elevatorUp() {
     elevatorMotor.set(0.3);
+    goalPointSet = false;
+    SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorDown() {
     elevatorMotor.set(-0.1);
+    goalPointSet = false;
+    SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorStop() {
-    elevatorMotor.set(0.13);
-    goalPoint = elevatorEncoder.getPosition();
+    if (!goalPointSet) {
+      goalPoint = elevatorEncoder.getPosition();
+      goalPointSet = true;
+    }
 
-    SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
-
-    // if (elevatorEncoder.getPosition() > (goalPoint + variance)) {
-    //   elevatorMotor.set(0.25);
-    // }
+    SmartDashboard.putNumber("Encoder is staying at pos: ", elevatorEncoder.getPosition());
 
     if (elevatorEncoder.getPosition() < (goalPoint - variance)) {
-      elevatorMotor.set(0.25);
+      elevatorMotor.set(0.24);
     }
 
     if (elevatorEncoder.getPosition() >= (goalPoint - variance) && elevatorEncoder.getPosition() <= (goalPoint + variance)) {
-      elevatorMotor.set(0);
+      elevatorMotor.set(0.13);
     }
   }
 
