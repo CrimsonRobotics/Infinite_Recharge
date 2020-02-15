@@ -23,10 +23,15 @@ public final class Constants {
 
     public final static int INTAKE_LEFT = 57;
     public final static int INTAKE_RIGHT = 56;
-
     public final static double INTAKE_SPEED = -.7;
-
     public final static int OUTTAKE = 0;
-
     public final static int INTAKE_MODULE = 10;
+
+    public static int module = 0;
+    //Don't know what module means, lauren just put it in her video
+    public static int omID = 53;
+    //ID for outake conveyer belt motor
+    public static int sol1ID = 54;
+    public static int sol2ID = 55;
+    //ID for double solenoid which pushes the door both to open and close
 }

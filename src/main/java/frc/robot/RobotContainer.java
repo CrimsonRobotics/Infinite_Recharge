@@ -11,10 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeCatchExtra;
-import frc.robot.commands.IntakeIn;
-import frc.robot.commands.IntakeStop;
-import frc.robot.commands.OuttakeSequence;
+import frc.robot.commands.ODoorClose;
+import frc.robot.commands.ODoorOpen;
+import frc.robot.commands.OutakeReverse;
+import frc.robot.commands.OutakeShoot;
+import frc.robot.commands.OutakeShutDown;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,37 +29,36 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  // private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  // private final Drive drive;
 
-  public Joystick Joystick1 = new Joystick(0);
-  public Joystick Joystick2 = new Joystick(1);
+   //operator joystick; spelling doesn't matter
+   Joystick operator = new Joystick(3);
+   //button for solenoid pushing door open and closing
+   JoystickButton outakedoor = new JoystickButton(operator, 5);
+   //button for outake shooter
+   JoystickButton outakebuttonShoot = new JoystickButton(operator, 6);
+   //button for reverse of outake shooter
+   JoystickButton OReverseButton = new JoystickButton(operator, 7);
+   //button to shut everything down, just for emergencies
+   JoystickButton OStopButton = new JoystickButton(operator, 8);
+   //button for solenoid closing door, not really needed but keep just incase
+   JoystickButton Solclose = new JoystickButton(operator, 7);
+   //button for solenoid opening door, not really needed but keep just incase
+   JoystickButton Solopen = new JoystickButton(operator, 8);
 
-  public JoystickButton intakeIn = new JoystickButton(Joystick1, 1);
-  public JoystickButton Outtake = new JoystickButton(Joystick1, 2);
-  // public JoystickButton intakeStop = new JoystickButton(Joystick1, 3);
-
-  public Joystick rightJoystick(){
-    return Joystick1;
-  }
-
-  public Joystick leftJoystick(){
-    return Joystick2;
-  }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    outakedoor.whenPressed(new ODoorOpen());
+    outakedoor.whenReleased(new ODoorClose());
+    outakebuttonShoot.whenPressed(new OutakeShoot());
+    OReverseButton.whenPressed(new OutakeReverse());
+    OStopButton.whenPressed(new OutakeShutDown());
     // Configure the button bindings
     configureButtonBindings();
-    // drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
-    // drivetrain.setDefaultCommand(drive);
-      // A split-stick arcade command, with forward/backward controlled by the left
-      // hand, and turning controlled by the right.
   }
-
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -67,15 +67,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Intake
-    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
-    intakeIn.whenReleased(new IntakeCatchExtra());
 
-    //Outtake
-    Outtake.whenPressed(new OuttakeSequence());
-
-    //Stop
-    // intakeStop.whenPressed(new IntakeStop());
   }
 
 
