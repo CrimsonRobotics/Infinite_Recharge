@@ -9,48 +9,74 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ODoorOpen;
 
-public class Outake extends SubsystemBase {
-
-  public final double outakeForward = 0.5;
-  public final double outakeReverse = -0.5;
-
-  public CANSparkMax outakeMotor = new CANSparkMax(Constants.OUTAKE_MOTORID, MotorType.kBrushless);
-  public DoubleSolenoid outakeSol = new DoubleSolenoid(3, 4);
+public class Outake extends CommandBase {
   /**
    * Creates a new Outake.
    */
-  public Outake() {
+  //Name motor
+  CANSparkMax conveyerBelt;
+  //name of solenoid
+  DoubleSolenoid DoubleSolenoid; 
+  //set speed
+  public final double Speed = .3;
+  public final double SpeedReverse = -.3;
+  public Outake(int mod, int omID, int sol1ID, int sol2ID) {
+    conveyerBelt = new CANSparkMax(omID, MotorType.kBrushless);
+    // Use addRequirements() here to declare subsystem dependencies.
+   DoubleSolenoid = new DoubleSolenoid(mod, sol1ID, sol2ID);
+  }
+//set speed to motors for different commandtype stuff
 
+//reverse of shooter
+public void OutakeReverse() {
+      conveyerBelt.set(SpeedReverse);
   }
 
-  public void OutakeForward(){
-    outakeMotor.set(outakeForward);
+  //shooter
+  public void OutakeShoot(){
+      conveyerBelt.set(Speed);
   }
 
-  public void OutakeStop(){
-    outakeMotor.set(0);
+  //Shut down incase of emergencies
+  public void OutakeShutDown(){
+      conveyerBelt.set(0);
   }
 
-  public void OutakeReverse(){
-    outakeMotor.set(outakeReverse);
+  //door close
+  public void ODoorClose(){
+   DoubleSolenoid.set(Value.kReverse);
   }
 
-  public void OutakeOpen(){
-    outakeSol.set(Value.kForward);
+  //door open
+  public void ODoorOpen(){
+    DoubleSolenoid.set(Value.kForward);
+  }
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
   }
 
-  public void OutakeClose(){
-    outakeSol.set(Value.kReverse);
-    }
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+  }
 
-@Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(final boolean interrupted) {
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }

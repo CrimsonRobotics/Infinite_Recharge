@@ -20,10 +20,10 @@ import frc.robot.subsystems.Outake;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
+  public static Outake outake = new Outake(Constants.module,Constants.omID,Constants.sol1ID, Constants.sol2ID);
   private RobotContainer m_robotContainer;
 
-  public static final Outake outake = new Outake();
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any

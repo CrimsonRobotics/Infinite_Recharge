@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class OutakeForward extends CommandBase {
+public class ODoorClose extends CommandBase {
   /**
-   * Creates a new OutakeForward.
+   * Creates a new ODoorClose.
    */
-  public OutakeForward() {
+  public ODoorClose() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +26,7 @@ public class OutakeForward extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.outake.OutakeForward();
+    Robot.outake.ODoorClose();
   }
 
   // Called once the command ends or is interrupted.
@@ -37,6 +37,6 @@ public class OutakeForward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class OutakeClose extends CommandBase {
+public class OutakeShoot extends CommandBase {
   /**
-   * Creates a new OutakeClose.
+   * Creates a new OutakeShoot.
    */
-  public OutakeClose() {
+  public OutakeShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +26,7 @@ public class OutakeClose extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.outake.OutakeClose();
+    Robot.outake.OutakeShoot();
   }
 
   // Called once the command ends or is interrupted.
@@ -37,6 +37,6 @@ public class OutakeClose extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

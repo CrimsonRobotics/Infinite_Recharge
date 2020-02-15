@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.OutakeClose;
-import frc.robot.commands.OutakeForward;
-import frc.robot.commands.OutakeOpen;
+import frc.robot.commands.ODoorClose;
+import frc.robot.commands.ODoorOpen;
 import frc.robot.commands.OutakeReverse;
-import frc.robot.commands.OutakeStop;
+import frc.robot.commands.OutakeShoot;
+import frc.robot.commands.OutakeShutDown;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,17 +32,30 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick Joystick1 = new  Joystick(0);
-  public Joystick Joystick2 = new Joystick(1);
-
-  public JoystickButton OutakeMotorF = new JoystickButton(Joystick1, 2);
-  public JoystickButton OutakeMotorR = new JoystickButton(Joystick1, 3);
-  public JoystickButton OutakeSol = new JoystickButton(Joystick1, 4);
+   //operator joystick; spelling doesn't matter
+   Joystick operator = new Joystick(3);
+   //button for solenoid pushing door open and closing
+   JoystickButton outakedoor = new JoystickButton(operator, 3);
+   //button for outake shooter
+   JoystickButton outakebuttonShoot = new JoystickButton(operator, 4);
+   //button for reverse of outake shooter
+   JoystickButton OReverseButton = new JoystickButton(operator, 5);
+   //button to shut everything down, just for emergencies
+   JoystickButton OStopButton = new JoystickButton(operator, 6);
+   //button for solenoid closing door, not really needed but keep just incase
+   JoystickButton Solclose = new JoystickButton(operator, 7);
+   //button for solenoid opening door, not really needed but keep just incase
+   JoystickButton Solopen = new JoystickButton(operator, 8);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    outakedoor.whenPressed(new ODoorOpen());
+    outakedoor.whenReleased(new ODoorClose());
+    outakebuttonShoot.whenPressed(new OutakeShoot());
+    OReverseButton.whenPressed(new OutakeReverse());
+    OStopButton.whenPressed(new OutakeShutDown());
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -54,12 +67,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    OutakeMotorF.whenPressed(new OutakeForward());
-    OutakeMotorF.whenReleased(new OutakeStop());
-    OutakeMotorR.whenPressed(new OutakeReverse());
-    OutakeMotorR.whenReleased(new OutakeStop());
-    OutakeSol.whenPressed(new OutakeOpen());
-    OutakeSol.whenReleased(new OutakeClose());
 
   }
 

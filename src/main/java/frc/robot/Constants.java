@@ -16,13 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    //Defines the Joysticks
-   public static final int driverRight = 1;
-   public static final int driverLeft = 0;
-   public static final int coDriver = 4;
-
-    //Outake Variable
-    public static final int OUTAKE_MOTORID = 58;
-    public static final int OUTAKE_SOL1 = 3;
+    public static int module = 0;
+    //Don't know what module means, lauren just put it in her video
+    public static int omID = 53;
+    //ID for outake conveyer belt motor
+    public static int sol1ID = 54;
+    public static int sol2ID = 55;
+    //ID for double solenoid which pushes the door both to open and close
+  
     
 }
