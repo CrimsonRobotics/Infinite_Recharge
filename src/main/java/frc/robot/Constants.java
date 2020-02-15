@@ -16,8 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public final static int fLID = 55;
-    public final static int fRID = 52;
-    public final static int bLID = 54;
-    public final static int bRID = 53;
+    //Defines the Joysticks
+   public static final int driverRight = 1;
+   public static final int driverLeft = 0;
+   public static final int coDriver = 4;
+
+    //Outake Variable
+    public static final int OUTAKE_MOTORID = 58;
+    public static final int OUTAKE_SOL1 = 3;
+    
 }
