@@ -10,12 +10,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.ODoorClose;
+import frc.robot.commands.ODoorOpen;
+import frc.robot.commands.OutakeReverse;
+import frc.robot.commands.OutakeShoot;
+import frc.robot.commands.OutakeShutDown;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -26,36 +29,32 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final Drive drive;
 
-  public Joystick Joystick1;
-  public Joystick Joystick2;
+   //operator joystick; spelling doesn't matter
+   Joystick operator = new Joystick(3);
+   //button for solenoid pushing door open and closing
+   JoystickButton outakedoor = new JoystickButton(operator, 5);
+   //button for outake shooter
+   JoystickButton outakebuttonShoot = new JoystickButton(operator, 6);
+   //button for reverse of outake shooter
+   JoystickButton OReverseButton = new JoystickButton(operator, 7);
+   //button to shut everything down, just for emergencies
+   JoystickButton OStopButton = new JoystickButton(operator, 8);
 
-  public Joystick rightJoystick(){
-    return Joystick1;
-  }
-
-  public Joystick leftJoystick(){
-    return Joystick2;
-  }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    this.Joystick1 = new Joystick(0);
-    this.Joystick2 = new Joystick(1);
-
+    outakedoor.whenPressed(new ODoorOpen());
+    outakedoor.whenReleased(new ODoorClose());
+    outakebuttonShoot.whenPressed(new OutakeShoot());
+    OReverseButton.whenPressed(new OutakeReverse());
+    OStopButton.whenPressed(new OutakeShutDown());
     // Configure the button bindings
     configureButtonBindings();
-    drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
-    drivetrain.setDefaultCommand(drive);
-      // A split-stick arcade command, with forward/backward controlled by the left
-      // hand, and turning controlled by the right.
   }
-
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -64,6 +63,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
   }
 
 

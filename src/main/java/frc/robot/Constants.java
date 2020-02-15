@@ -16,8 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public final static int fLID = 55;
-    public final static int fRID = 52;
-    public final static int bLID = 54;
-    public final static int bRID = 53;
+    public static int module = 0;
+    //Don't know what module means, lauren just put it in her video
+    public static int omID = 53;
+    //ID for outake conveyer belt motor
+    public static int sol1ID = 54;
+    public static int sol2ID = 55;
+    //ID for double solenoid which pushes the door both to open and close
+  
+    
 }
