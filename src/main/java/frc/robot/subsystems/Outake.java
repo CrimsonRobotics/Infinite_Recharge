@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ODoorOpen;
 
-public class Outake extends CommandBase {
+public class Outake extends SubsystemBase {
   /**
    * Creates a new Outake.
    */
@@ -26,8 +26,8 @@ public class Outake extends CommandBase {
   //name of solenoid
   DoubleSolenoid DoubleSolenoid; 
   //set speed
-  public final double Speed = .3;
-  public final double SpeedReverse = -.3;
+  public final double Speed = .8;
+  public final double SpeedReverse = -.8;
   public Outake(int mod, int omID, int sol1ID, int sol2ID) {
     conveyerBelt = new CANSparkMax(omID, MotorType.kBrushless);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -61,22 +61,7 @@ public void OutakeReverse() {
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(final boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+  public void periodic() {
+    // This method will be called once per scheduler run
   }
 }

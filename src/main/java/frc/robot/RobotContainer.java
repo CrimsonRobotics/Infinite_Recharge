@@ -35,17 +35,13 @@ public class RobotContainer {
    //operator joystick; spelling doesn't matter
    Joystick operator = new Joystick(3);
    //button for solenoid pushing door open and closing
-   JoystickButton outakedoor = new JoystickButton(operator, 3);
+   JoystickButton outakedoor = new JoystickButton(operator, 5);
    //button for outake shooter
-   JoystickButton outakebuttonShoot = new JoystickButton(operator, 4);
+   JoystickButton outakebuttonShoot = new JoystickButton(operator, 6);
    //button for reverse of outake shooter
-   JoystickButton OReverseButton = new JoystickButton(operator, 5);
+   JoystickButton OReverseButton = new JoystickButton(operator, 7);
    //button to shut everything down, just for emergencies
-   JoystickButton OStopButton = new JoystickButton(operator, 6);
-   //button for solenoid closing door, not really needed but keep just incase
-   JoystickButton Solclose = new JoystickButton(operator, 7);
-   //button for solenoid opening door, not really needed but keep just incase
-   JoystickButton Solopen = new JoystickButton(operator, 8);
+   JoystickButton OStopButton = new JoystickButton(operator, 8);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
