@@ -42,6 +42,10 @@ public class RobotContainer {
    JoystickButton OReverseButton = new JoystickButton(operator, 7);
    //button to shut everything down, just for emergencies
    JoystickButton OStopButton = new JoystickButton(operator, 8);
+   //button for solenoid closing door, not really needed but keep just incase
+   JoystickButton Solclose = new JoystickButton(operator, 7);
+   //button for solenoid opening door, not really needed but keep just incase
+   JoystickButton Solopen = new JoystickButton(operator, 8);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
