@@ -15,7 +15,7 @@ import frc.robot.subsystems.DriveTrain;
  * An example command that uses an example subsystem.
  */
 public class Drive extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final DriveTrain driveTrain;
   private final Joystick rightJoystick;
   private final Joystick leftJoystick;
