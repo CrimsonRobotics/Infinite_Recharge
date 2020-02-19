@@ -22,18 +22,19 @@ public class IntakeCatchExtra extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    new IntakeIn(Constants.INTAKE_SPEED / 2), 
-    new WaitCommand(.1),
-    new IntakeIn(Constants.INTAKE_SPEED / 4), 
-    new WaitCommand(.1),
-    new IntakeStop(), 
-    new WaitCommand(.1), 
-    new IntakeReverse(Constants.INTAKE_SPEED / 4), 
-    new WaitCommand(.1), 
-    new IntakeReverse(Constants.INTAKE_SPEED / 2), 
-    new WaitCommand(.1), 
-    new IntakeReverse(Constants.INTAKE_SPEED), 
-    new WaitCommand(.2), 
-    new IntakeStop());
+      new IntakeIn(Constants.INTAKE_SPEED / 2), 
+      new WaitCommand(.1),
+      new IntakeIn(Constants.INTAKE_SPEED / 4), 
+      new WaitCommand(.1),
+      new IntakeStop(), 
+      new WaitCommand(.1), 
+      new IntakeReverse(Constants.INTAKE_SPEED / 4), 
+      new WaitCommand(.1), 
+      new IntakeReverse(Constants.INTAKE_SPEED / 2), 
+      new WaitCommand(.1), 
+      new IntakeReverse(Constants.INTAKE_SPEED), 
+      new WaitCommand(.2), 
+      new IntakeStop()
+    );
   }
 }
