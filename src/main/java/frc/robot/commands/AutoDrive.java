@@ -23,24 +23,8 @@ public class AutoDrive extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(
       new DriveAutonomous(0, .3),
-      new WaitCommand(1),
+      new WaitCommand(7),
       new DriveStop()
       );
-
-    /*
-    addCommands(
-      sequence(
-        new DriveAutonomous(0, 0.3),
-        new WaitCommand(1),
-        // System.out.println("It should stop"),
-        new DriveStop(),
-        new WaitCommand(1)
-        // System.out.println("If this doesn't stop, run"),
-        
-      ),
-      new DriveStop()
-      
-    );
-    */
   }
 }

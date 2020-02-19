@@ -46,6 +46,11 @@ public class DriveTrain extends SubsystemBase {
     diffDrive.arcadeDrive(turnSpeed, forwardSpeed);
   }
 
+  public void drive(double leftSpeed, double rightSpeed) {
+    rightMotors.set(rightSpeed);
+    leftMotors.set(leftSpeed);
+  }
+
   public void stopRobot(){
     rightMotors.set(0);
     leftMotors.set(0);
