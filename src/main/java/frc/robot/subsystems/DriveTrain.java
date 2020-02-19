@@ -40,8 +40,8 @@ public class DriveTrain extends SubsystemBase {
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
 
-  public void arcadeDrive(Joystick rightJoystick, Joystick leftJoystick){
-    diffDrive.arcadeDrive(rightJoystick.getY(),-leftJoystick.getX());
+  public void arcadeDrive(double forwardSpeed, double turnSpeed){
+    diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 
   @Override
