@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.*;
 import frc.robot.subsystems.DriveTrain;
 
 
@@ -40,8 +42,13 @@ public class DriveTrain extends SubsystemBase {
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
 
-  public void arcadeDrive(Joystick rightJoystick, Joystick leftJoystick){
-    diffDrive.arcadeDrive(rightJoystick.getY(),-leftJoystick.getX());
+  public void arcadeDrive(double forwardSpeed, double turnSpeed){
+    diffDrive.arcadeDrive(turnSpeed, forwardSpeed);
+  }
+
+  public void stopRobot(){
+    rightMotors.set(0);
+    leftMotors.set(0);
   }
 
   @Override

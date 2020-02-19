@@ -1,4 +1,3 @@
-
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -8,38 +7,40 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoDrive extends CommandBase {
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+public class AutoDrive extends SequentialCommandGroup {
   /**
    * Creates a new AutoDrive.
    */
-  public AutoDrive(DriveTrain subsystem) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
-  }
+  public AutoDrive() {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    super(
+      new DriveAutonomous(0, .3),
+      new WaitCommand(1),
+      new DriveStop()
+      );
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    System.out.println("Starting Autonomous, I hope you're ready");
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+    /*
+    addCommands(
+      sequence(
+        new DriveAutonomous(0, 0.3),
+        new WaitCommand(1),
+        // System.out.println("It should stop"),
+        new DriveStop(),
+        new WaitCommand(1)
+        // System.out.println("If this doesn't stop, run"),
+        
+      ),
+      new DriveStop()
+      
+    );
+    */
   }
 }
