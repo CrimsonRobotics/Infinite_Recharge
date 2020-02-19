@@ -82,7 +82,7 @@ public class DriveTrain extends PIDSubsystem {
     SmartDashboard.putNumber("Left stick cooldown", timer.get() - leftStickTime);
     //SmartDashboard.putBoolean("Left stick touched", timer.get() - leftStickTime >= 1);
 
-    final int tolerance = 7;
+    final int tolerance = 5;
 
     //CONDITIONS:
     //left stick is being touched (so it doesn't try to correct itself while stopping)
@@ -133,6 +133,7 @@ public class DriveTrain extends PIDSubsystem {
           leftControllerGroup.set(leftControllerGroup.get() + (rightControllerGroup.get() * (percent / 100)));
         } else {
           rightControllerGroup.set(leftControllerGroup.get() + (rightControllerGroup.get() * (percent / 100)));
+          //leftControllerGroup.set(rightControlerGroup.get() + (leftControllerGroup.get()* (percent /100))); was going to test all inverses
         }
       }
     } else {
