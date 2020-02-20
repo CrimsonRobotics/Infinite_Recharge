@@ -11,11 +11,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.ODoorClose;
-import frc.robot.commands.ODoorOpen;
-import frc.robot.commands.OutakeReverse;
-import frc.robot.commands.OutakeShoot;
-import frc.robot.commands.OutakeShutDown;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,30 +27,10 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-   //operator joystick; spelling doesn't matter
-   Joystick operator = new Joystick(3);
-   //button for solenoid pushing door open and closing
-   JoystickButton outakedoor = new JoystickButton(operator, 5);
-   //button for outake shooter
-   JoystickButton outakebuttonShoot = new JoystickButton(operator, 6);
-   //button for reverse of outake shooter
-   JoystickButton OReverseButton = new JoystickButton(operator, 7);
-   //button to shut everything down, just for emergencies
-   JoystickButton OStopButton = new JoystickButton(operator, 8);
-   //button for solenoid closing door, not really needed but keep just incase
-   JoystickButton Solclose = new JoystickButton(operator, 7);
-   //button for solenoid opening door, not really needed but keep just incase
-   JoystickButton Solopen = new JoystickButton(operator, 8);
-
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    outakedoor.whenPressed(new ODoorOpen());
-    outakedoor.whenReleased(new ODoorClose());
-    outakebuttonShoot.whenPressed(new OutakeShoot());
-    OReverseButton.whenPressed(new OutakeReverse());
-    OStopButton.whenPressed(new OutakeShutDown());
     // Configure the button bindings
     configureButtonBindings();
   }
