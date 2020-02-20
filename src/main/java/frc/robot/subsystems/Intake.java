@@ -37,7 +37,7 @@ public class Intake extends SubsystemBase {
 
   public void IntakeIn(double speed) {
     intakeLeft.set(speed);
-    intakeRight.set(speed);
+    intakeRight.set(-speed);
   }
 
   public void IntakeStop() {
@@ -47,7 +47,7 @@ public class Intake extends SubsystemBase {
 
   public void IntakeOut(double speed) { //Spit out balls via intake
     intakeLeft.set(-speed);
-    intakeRight.set(-speed);
+    intakeRight.set(speed);
   }
 
   public void OuttakeForward() { //For moving balls forward without shooting
