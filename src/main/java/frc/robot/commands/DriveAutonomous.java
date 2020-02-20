@@ -23,12 +23,12 @@ public class DriveAutonomous extends CommandBase {
   Timer timer;
 
   public DriveAutonomous(double lS, double rS, double runTime) {
+    System.out.println("Creating new drive command running for " + runTime);
     leftSpeed = lS;
     rightSpeed = rS;
-    runTime = time;
+    time = runTime;
 
-    timer.reset();
-    timer.start();
+    timer = new Timer();
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.driveTrain);
@@ -37,12 +37,16 @@ public class DriveAutonomous extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    timer.reset();
+    timer.start();
+
+    System.out.println(timer.get());
+    System.out.println("Running for " + time + " seconds..");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Running DriveAutonomous");
     RobotContainer.driveTrain.arcadeDrive(leftSpeed, rightSpeed);
   }
 
