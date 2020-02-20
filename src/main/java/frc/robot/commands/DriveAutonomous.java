@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -17,11 +18,17 @@ public class DriveAutonomous extends CommandBase {
   double rightSpeed;
   double leftSpeed;
 
-  int i = 0;
-  
-  public DriveAutonomous(double lS, double rS) {
+  double time;
+
+  Timer timer;
+
+  public DriveAutonomous(double lS, double rS, double runTime) {
     leftSpeed = lS;
     rightSpeed = rS;
+    runTime = time;
+
+    timer.reset();
+    timer.start();
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.driveTrain);
@@ -36,9 +43,7 @@ public class DriveAutonomous extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Running DriveAutonomous");
-    RobotContainer.driveTrain.drive(leftSpeed, rightSpeed);
-
-    i = i + 1;
+    RobotContainer.driveTrain.arcadeDrive(leftSpeed, rightSpeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -49,11 +54,10 @@ public class DriveAutonomous extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(i<100) {
+    if(timer.get() < time) {
       return false;
     } else {
       return true;
     }
   }
-
 }

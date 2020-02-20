@@ -22,8 +22,7 @@ public class AutoDrive extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new DriveAutonomous(0, .3),
-      new WaitCommand(7),
+      new DriveAutonomous(.3, 0, 4),
       new DriveStop()
       );
   }
