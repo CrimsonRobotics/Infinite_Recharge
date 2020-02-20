@@ -27,7 +27,7 @@ public class OuttakeStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.OuttakeStop();
+    Robot.outtake.OuttakeStop();
   }
 
   // Called once the command ends or is interrupted.

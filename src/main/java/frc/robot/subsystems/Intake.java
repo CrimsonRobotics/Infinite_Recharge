@@ -10,9 +10,6 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -21,17 +18,10 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  public final double outtakeMoveSpeed = .5;
-  public final double outtakeShootSpeed = .8;
-
   public final double intakeSpeed =  -.5;
 
   public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_LEFT, MotorType.kBrushless);
   public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_RIGHT, MotorType.kBrushless);
-
-  // public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE, MotorType.kBrushless);
-
-  // public DoubleSolenoid outtakeDoorSolenoid = new DoubleSolenoid(Constants.INTAKE_MODULE, 0, 1);
 
   public Intake() {
   }
@@ -40,7 +30,11 @@ public class Intake extends SubsystemBase {
     intakeLeft.set(speed);
     intakeRight.set(-speed);
 
-    SmartDashboard.putNumber("Intake Encoder RPM", intakeLeft.getEncoder().getVelocity());
+    double encoderRpm = intakeLeft.getEncoder().getVelocity();
+    SmartDashboard.putNumber("Intake Encoder RPM", encoderRpm);
+    if (encoderRpm <= 100) {
+      System.out.println("Intake may be jammed");
+    }
   }
 
   public void IntakeStop() {
@@ -53,28 +47,12 @@ public class Intake extends SubsystemBase {
     intakeRight.set(speed);
   }
 
-  public void OuttakeForward() { //For moving balls forward without shooting
-    // outtake.set(outtakeMoveSpeed);
+  public void RaiseIntakeArm() {
+    System.out.println("Rhaising intake arm");
   }
 
-  public void OuttakeShoot() { //Outtake forwards
-    // outtake.set(outtakeShootSpeed);
-  }
-
-  public void OuttakeReverse() { //Outtake reverse
-    // outtake.set(-outtakeMoveSpeed);
-  }
-
-  public void OuttakeStop() { //Stops conveyor
-    // outtake.set(0);
-  }
-
-  public void OuttakeDoorOpen() { //Opens outtake door
-    // outtakeDoorSolenoid.set(Value.kForward);
-  }
-
-  public void OuttakeDoorClose() { //Closes outtake door
-    // outtakeDoorSolenoid.set(Value.kReverse);
+  public void LowerIntakeArm() {
+    System.out.println("Lowering intake arm");
   }
 
   @Override

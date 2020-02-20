@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeArmDown;
+import frc.robot.commands.IntakeArmUp;
 import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
-import frc.robot.commands.IntakeStop;
 import frc.robot.commands.OuttakeSequence;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -37,8 +38,11 @@ public class RobotContainer {
   public Joystick Joystick2 = new Joystick(1);
 
   public JoystickButton intakeIn = new JoystickButton(Joystick1, 1);
-  public JoystickButton Outtake = new JoystickButton(Joystick1, 2);
+  public JoystickButton intakeToggleArm = new JoystickButton(Joystick1, 2);
+  public JoystickButton Outtake = new JoystickButton(Joystick1, 3);
   // public JoystickButton intakeStop = new JoystickButton(Joystick1, 3);
+
+  public boolean intakeArmUp = true;
 
   public Joystick rightJoystick(){
     return Joystick1;
@@ -51,12 +55,10 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    intakeArmUp = true;
+
     // Configure the button bindings
     configureButtonBindings();
-    // drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
-    // drivetrain.setDefaultCommand(drive);
-      // A split-stick arcade command, with forward/backward controlled by the left
-      // hand, and turning controlled by the right.
   }
 
 
@@ -71,11 +73,14 @@ public class RobotContainer {
     intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
+    if (intakeArmUp == true) {
+      intakeToggleArm.whenPressed(new IntakeArmDown());
+    } else {
+      intakeToggleArm.whenPressed(new IntakeArmUp());
+    }
+
     //Outtake
     Outtake.whenPressed(new OuttakeSequence());
-
-    //Stop
-    // intakeStop.whenPressed(new IntakeStop());
   }
 
 

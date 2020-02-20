@@ -8,13 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class OuttakeShoot extends CommandBase {
+public class IntakeArmUp extends CommandBase {
   /**
    * Creates a new IntakeIn.
    */
-  public OuttakeShoot() {
+  double motorSpeed;
+  public IntakeArmUp() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake);
   }
@@ -24,10 +26,10 @@ public class OuttakeShoot extends CommandBase {
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled ;P -LeVahn
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.outtake.OuttakeShoot();
+    Robot.intake.RaiseIntakeArm();
   }
 
   // Called once the command ends or is interrupted.

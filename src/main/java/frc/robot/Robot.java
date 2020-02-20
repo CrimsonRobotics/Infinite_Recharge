@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Outtake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,7 +25,8 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public static final Intake intake = new Intake();
+  public static Intake intake;
+  public static Outtake outtake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,6 +38,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     //CommandScheduler.getInstance().setDefaultCommand(drivetrain, arcadeDrive);
     m_robotContainer = new RobotContainer();
+
+    intake = new Intake();
+    outtake = new Outtake();
   }
 
   /**
