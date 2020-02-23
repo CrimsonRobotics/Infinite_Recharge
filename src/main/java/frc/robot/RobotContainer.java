@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.AutoDrive;
+import frc.robot.commands.AutoTaskList;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -27,7 +27,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public final static DriveTrain driveTrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
 
-  private final AutoDrive m_autoCommand = new AutoDrive();
+  private final AutoTaskList m_autoCommand = new AutoTaskList();
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
