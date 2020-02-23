@@ -23,7 +23,10 @@ public class Intake extends SubsystemBase {
   public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_LEFT, MotorType.kBrushless);
   public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_RIGHT, MotorType.kBrushless);
 
+  public boolean armUp = true;
+
   public Intake() {
+    armUp = true;
   }
 
   public void IntakeIn(double speed) {
@@ -45,6 +48,14 @@ public class Intake extends SubsystemBase {
   public void IntakeOut(double speed) { //Spit out balls via intake
     intakeLeft.set(-speed);
     intakeRight.set(speed);
+  }
+
+  public void IntakeArmToggle() { //If arm is down, send it up and vice-versa
+    if (armUp == true) {
+      LowerIntakeArm();
+    } else {
+      RaiseIntakeArm();
+    }
   }
 
   public void RaiseIntakeArm() {

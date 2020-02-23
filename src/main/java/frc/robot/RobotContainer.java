@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeArmDown;
-import frc.robot.commands.IntakeArmUp;
+import frc.robot.commands.IntakeArmToggle;
 import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.OuttakeSequence;
@@ -32,7 +31,6 @@ public class RobotContainer {
   // private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  // private final Drive drive;
 
   public Joystick Joystick1 = new Joystick(0);
   public Joystick Joystick2 = new Joystick(1);
@@ -40,7 +38,6 @@ public class RobotContainer {
   public JoystickButton intakeIn = new JoystickButton(Joystick1, 1);
   public JoystickButton intakeToggleArm = new JoystickButton(Joystick1, 2);
   public JoystickButton Outtake = new JoystickButton(Joystick1, 3);
-  // public JoystickButton intakeStop = new JoystickButton(Joystick1, 3);
 
   public boolean intakeArmUp = true;
 
@@ -70,14 +67,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Intake
-    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
+    intakeIn.whileHeld(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
-    if (intakeArmUp == true) {
-      intakeToggleArm.whenPressed(new IntakeArmDown());
-    } else {
-      intakeToggleArm.whenPressed(new IntakeArmUp());
-    }
+    intakeToggleArm.whenPressed(new IntakeArmToggle());
 
     //Outtake
     Outtake.whenPressed(new OuttakeSequence());
