@@ -11,10 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BeginCPSpin;
-// import frc.robot.commands.CPSpin;
 import frc.robot.commands.ColorDetect;
 import frc.robot.subsystems.ControlPanel;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -30,9 +28,7 @@ public class RobotContainer {
   // private final ColorDetect colorDetect = new ColorDetect(controlPanel);
 
   //Joysticks and buttons
-  // private final Joystick driverRight = new Joystick(Constants.driverRight);
   private final Joystick driverLeft = new Joystick(Constants.driverLeft);
-  // private final Joystick coDriver = new Joystick(Constants.coDriver);
   private final JoystickButton spinControlPanel = new JoystickButton(driverLeft, 1);
 
   /**

@@ -12,8 +12,10 @@ import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
@@ -56,6 +58,7 @@ public class ControlPanel extends SubsystemBase {
   public boolean currentlySpinning = false;
 
   private final CANSparkMax panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
+  private final DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(Constants.controlPanelSolenoid[0], Constants.controlPanelSolenoid[1]);
 
   public ControlPanel(Port i2c) {
     try {
@@ -79,6 +82,14 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putBoolean("Spinning", false);
   }
 
+  public void CPUp() {
+    spinnerSolenoid.set(Value.kForward);
+  }
+  
+  public void CPDown() {
+    spinnerSolenoid.set(Value.kReverse);
+  }
+
   public void ColorDetect() {
     detectedC = colorSense.getColor();
 
@@ -98,6 +109,7 @@ public class ControlPanel extends SubsystemBase {
     }
 
     SmartDashboard.putString("Detected Color", colorString);
+    SmartDashboard.putNumber("Confidence", match.confidence);
 
     SmartDashboard.putNumber("red: ", detectedC.red);
     SmartDashboard.putNumber("green: ", detectedC.green);
@@ -107,11 +119,13 @@ public class ControlPanel extends SubsystemBase {
       SmartDashboard.putBoolean("Spinning", true);
       panelSpinner.set(.3);
       if (colorString != "Unknown") {
-        if (colorString == searchingColor) {
-          currentlySpinning = false;
-          System.out.println("Found color " + searchingColor + " after searching");
-          SmartDashboard.putBoolean("Found color", true);
-        }
+        if (match.confidence >= .7) {
+          if (colorString == searchingColor) {
+            currentlySpinning = false;
+            System.out.println("Found color " + searchingColor + " after searching");
+            SmartDashboard.putBoolean("Found color", true);
+          }
+        } 
       }
     } else {
       SmartDashboard.putBoolean("Spinning", false);
@@ -154,16 +168,7 @@ public class ControlPanel extends SubsystemBase {
       System.out.println("No gamedata");
     }
   }
-
-  public void spinForColor(String color) {
-    // color sensing code
-
-    // set foundColor to true when the correct color is found, the command will stop
-    // running
-    System.out.println("Received spin command for " + color);
-    // foundColor = true;
-  }
-
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
