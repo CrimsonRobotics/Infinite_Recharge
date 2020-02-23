@@ -10,12 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.Drive;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -26,13 +25,16 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrain drivetrain = new DriveTrain(Constants.fLID, Constants.fRID, Constants.bLID, Constants.bRID);
+  private final DriveTrain drivetrain = new DriveTrain(
+    Constants.fLID, Constants.mLID, Constants.bLID, Constants.fRID, Constants.mRID, Constants.bRID,
+    Constants.shiftyLID, Constants.shiftyRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final Drive drive;
 
   public Joystick Joystick1;
   public Joystick Joystick2;
+  JoystickButton shiftyButton;
 
   public Joystick rightJoystick(){
     return Joystick1;
@@ -47,7 +49,7 @@ public class RobotContainer {
   public RobotContainer() {
     this.Joystick1 = new Joystick(0);
     this.Joystick2 = new Joystick(1);
-
+    shiftyButton = new JoystickButton(Joystick2, 1);
     // Configure the button bindings
     configureButtonBindings();
     drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
@@ -64,6 +66,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    shiftyButton.whenPressed(new ShiftHigh());
+    shiftyButton.whenReleased(new ShiftLow()); 
   }
 
 
