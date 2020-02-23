@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,18 +23,14 @@ public class Outtake extends SubsystemBase {
   public final double outtakeMoveSpeed = .3;
   public final double outtakeShootSpeed = .8;
 
-  public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE, MotorType.kBrushless);
+  public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE_SPARK, MotorType.kBrushless);
 
-  public DoubleSolenoid outtakeDoorSolenoid = new DoubleSolenoid(Constants.INTAKE_MODULE, 0, 1);
+  public Solenoid outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_SOLENOID);
 
   public boolean doorOpen = false;
 
   public Outtake() {
     doorOpen = false;
-  }
-
-  public void OuttakeForward() { //For moving balls forward without shooting
-    outtake.set(outtakeMoveSpeed);
   }
 
   public void OuttakeShoot() { //Outtake forwards
@@ -57,12 +54,12 @@ public class Outtake extends SubsystemBase {
   }
 
   public void OuttakeDoorOpen() { //Opens outtake door
-    outtakeDoorSolenoid.set(Value.kForward);
+    outtakeDoorSolenoid.set(true);
     doorOpen = true;
   }
 
   public void OuttakeDoorClose() { //Closes outtake door
-    outtakeDoorSolenoid.set(Value.kReverse);
+    outtakeDoorSolenoid.set(false);
     doorOpen = false;
   }
 

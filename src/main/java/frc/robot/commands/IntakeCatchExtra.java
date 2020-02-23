@@ -22,6 +22,7 @@ public class IntakeCatchExtra extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
+      new OuttakeStop(),
       new IntakeIn(Constants.INTAKE_SPEED / 2), 
       new WaitCommand(.1),
       new IntakeIn(Constants.INTAKE_SPEED / 4), 

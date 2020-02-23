@@ -31,6 +31,7 @@ public class IntakeIn extends CommandBase {
   @Override
   public void execute() {
     Robot.intake.IntakeIn(motorSpeed);
+    Robot.outtake.OuttakeSlowIn();
   }
 
   // Called once the command ends or is interrupted.

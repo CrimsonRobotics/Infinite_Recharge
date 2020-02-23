@@ -26,7 +26,8 @@ public final class Constants {
 
     public final static double INTAKE_SPEED = -.7;
 
-    public final static int OUTTAKE = 0;
+    public final static int OUTTAKE_SPARK = 0;
+    public final static int OUTTAKE_SOLENOID = 1;
 
     public final static int INTAKE_MODULE = 10;
 }
