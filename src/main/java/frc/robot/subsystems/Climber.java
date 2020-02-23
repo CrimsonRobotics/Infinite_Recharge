@@ -12,6 +12,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.*;
@@ -23,26 +24,44 @@ public class Climber extends SubsystemBase {
 public static double lastEncoderPosition;
 
   static CANSparkMax elevatorMotor;
+  private static double goalPoint;
+  private static int variance = 450;
+  private static boolean goalPointSet;
 
   static CANEncoder elevatorEncoder = new CANEncoder(elevatorMotor);
 
   public Climber(int bRID) {
     elevatorMotor = new CANSparkMax(bRID, MotorType.kBrushed);
-    lastEncoderPosition = elevatorEncoder.getPosition();
+    elevatorEncoder = elevatorMotor.getAlternateEncoder(AlternateEncoderType.kQuadrature, 4096);
   }
 
   public static void elevatorUp() {
     elevatorMotor.set(0.3);
+    goalPointSet = false;
+    SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorDown() {
     elevatorMotor.set(-0.1);
+    goalPointSet = false;
+    SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorStop() {
-    elevatorMotor.set(0.13);
-    SmartDashboard.putNumber("Last encoder position", lastEncoderPosition);
-    lastEncoderPosition = elevatorEncoder.getPosition();
+    if (!goalPointSet) {
+      goalPoint = elevatorEncoder.getPosition();
+      goalPointSet = true;
+    }
+
+    SmartDashboard.putNumber("Encoder is staying at pos: ", elevatorEncoder.getPosition());
+
+    if (elevatorEncoder.getPosition() < (goalPoint - variance)) {
+      elevatorMotor.set(0.24);
+    }
+
+    if (elevatorEncoder.getPosition() >= (goalPoint - variance) && elevatorEncoder.getPosition() <= (goalPoint + variance)) {
+      elevatorMotor.set(0.13);
+    }
   }
 
   @Override
