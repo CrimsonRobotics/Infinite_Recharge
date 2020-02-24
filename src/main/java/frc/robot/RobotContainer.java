@@ -30,7 +30,6 @@ public class RobotContainer {
     Constants.shiftyLID, Constants.shiftyRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final Drive drive;
 
   public Joystick Joystick1;
   public Joystick Joystick2;
@@ -52,8 +51,7 @@ public class RobotContainer {
     shiftyButton = new JoystickButton(Joystick2, 1);
     // Configure the button bindings
     configureButtonBindings();
-    drive = new Drive(drivetrain, leftJoystick(), rightJoystick());
-    drivetrain.setDefaultCommand(drive);
+    drivetrain.setDefaultCommand(new Drive(drivetrain, leftJoystick(), rightJoystick()));
       // A split-stick arcade command, with forward/backward controlled by the left
       // hand, and turning controlled by the right.
   }

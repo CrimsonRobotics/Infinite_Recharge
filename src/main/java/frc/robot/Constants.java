@@ -22,9 +22,9 @@ public final class Constants {
     public final static int mLID = 60;
     public final static int bLID = 54;
 
-    public final static int fRID = 52;
-    public final static int mRID = 61;
-    public final static int bRID = 53;
+    public final static int fRID = 49;
+    public final static int mRID = 50;
+    public final static int bRID = 51;
 
     // public final static int mod1ID = 0;
     public final static int shiftyLID = 0;

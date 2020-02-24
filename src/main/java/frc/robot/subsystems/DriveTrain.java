@@ -33,7 +33,7 @@ public class DriveTrain extends SubsystemBase {
 
   private final SpeedControllerGroup leftMotors;
   private final SpeedControllerGroup rightMotors;
-  private final DifferentialDrive diffDrive; 
+  private final DifferentialDrive diffDrive;
 
   static Solenoid shiftyLeft;
   static Solenoid shiftyRight;
@@ -42,7 +42,7 @@ public class DriveTrain extends SubsystemBase {
     int FR, int MR, int BR, 
     int SHIFTYL_ID, int SHIFTYR_ID) {
     frontLeft = new CANSparkMax(FL,MotorType.kBrushless);
-    middleLeft = new CANSparkMax(MR, MotorType.kBrushless);
+    middleLeft = new CANSparkMax(ML, MotorType.kBrushless);
     backLeft = new CANSparkMax(BL,MotorType.kBrushless);
 
     frontRight = new CANSparkMax(FR, MotorType.kBrushless);
@@ -53,6 +53,7 @@ public class DriveTrain extends SubsystemBase {
     rightMotors = new SpeedControllerGroup(frontRight, backRight, middleRight);
 
     leftMotors.setInverted(true);
+    middleRight.setInverted(true);
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
     
@@ -61,7 +62,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
-    backRight.set(forwardSpeed);
+    // backRight.set(forwardSpeed);
+    rightMotors.set(forwardSpeed);
     // diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 
