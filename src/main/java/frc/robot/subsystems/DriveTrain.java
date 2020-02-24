@@ -53,7 +53,9 @@ public class DriveTrain extends SubsystemBase {
     rightMotors = new SpeedControllerGroup(frontRight, backRight, middleRight);
 
     leftMotors.setInverted(true);
+    frontRight.setInverted(false);
     middleRight.setInverted(true);
+    backRight.setInverted(false);
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
     
@@ -64,6 +66,9 @@ public class DriveTrain extends SubsystemBase {
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
     // backRight.set(forwardSpeed);
     rightMotors.set(forwardSpeed);
+    // middleRight.set(forwardSpeed);
+    // frontRight.set(forwardSpeed);
+    
     // diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 
@@ -71,7 +76,7 @@ public class DriveTrain extends SubsystemBase {
     shiftyLeft.set(true);
     shiftyRight.set(true);
   }
-
+  
   public static void ShiftLow() {
     shiftyLeft.set(false);
     shiftyRight.set(false);
