@@ -25,7 +25,7 @@ public class Outtake extends SubsystemBase {
 
   public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE_SPARK, MotorType.kBrushless);
 
-  public Solenoid outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_SOLENOID);
+  // public Solenoid outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_SOLENOID);
 
   public boolean doorOpen = false;
 
@@ -54,12 +54,14 @@ public class Outtake extends SubsystemBase {
   }
 
   public void OuttakeDoorOpen() { //Opens outtake door
-    outtakeDoorSolenoid.set(true);
+    // outtakeDoorSolenoid.set(true);
+    System.out.println("Opening outtake door");
     doorOpen = true;
   }
 
   public void OuttakeDoorClose() { //Closes outtake door
-    outtakeDoorSolenoid.set(false);
+    // outtakeDoorSolenoid.set(false);
+    System.out.println("Closing outtake door");
     doorOpen = false;
   }
 

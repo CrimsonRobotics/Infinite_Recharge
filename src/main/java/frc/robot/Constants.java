@@ -26,7 +26,7 @@ public final class Constants {
 
     public final static int INTAKE_MODULE = 10;
 
-    public final static int INTAKE_IN_BUTTON = 3;
-    public final static int INTAKE_ARM_BUTTON = 4;
-    public final static int OUTTAKE_BUTTON = 5;
+    public final static int INTAKE_IN_BUTTON = 1;
+    public final static int INTAKE_ARM_BUTTON = 2;
+    public final static int OUTTAKE_BUTTON = 3;
 }
