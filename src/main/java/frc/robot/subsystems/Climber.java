@@ -30,8 +30,8 @@ public static double lastEncoderPosition;
 
   static CANEncoder elevatorEncoder = new CANEncoder(elevatorMotor);
 
-  public Climber(int bRID) {
-    elevatorMotor = new CANSparkMax(bRID, MotorType.kBrushed);
+  public Climber(int elevatorMotorID) {
+    elevatorMotor = new CANSparkMax(elevatorMotorID, MotorType.kBrushed);
     elevatorEncoder = elevatorMotor.getAlternateEncoder(AlternateEncoderType.kQuadrature, 4096);
   }
 
