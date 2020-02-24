@@ -38,7 +38,9 @@ public class DriveTrain extends SubsystemBase {
   static Solenoid shiftyLeft;
   static Solenoid shiftyRight;
 
-  public DriveTrain(int FL, int ML, int BL, int FR, int MR, int BR, int SHIFTYL_ID, int SHIFTYR_ID) {
+  public DriveTrain(int FL, int ML, int BL,  
+    int FR, int MR, int BR, 
+    int SHIFTYL_ID, int SHIFTYR_ID) {
     frontLeft = new CANSparkMax(FL,MotorType.kBrushless);
     middleLeft = new CANSparkMax(MR, MotorType.kBrushless);
     backLeft = new CANSparkMax(BL,MotorType.kBrushless);
@@ -58,8 +60,9 @@ public class DriveTrain extends SubsystemBase {
     shiftyRight = new Solenoid(SHIFTYR_ID);
   }
 
-  public void arcadeDrive(double forwardSpeed, double turnSpeed){
-    diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
+  public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
+    backRight.set(forwardSpeed);
+    // diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 
   public static void ShiftHigh() {
@@ -71,6 +74,7 @@ public class DriveTrain extends SubsystemBase {
     shiftyLeft.set(false);
     shiftyRight.set(false);
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
