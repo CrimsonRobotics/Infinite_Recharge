@@ -20,8 +20,8 @@ public class Intake extends SubsystemBase {
    */
   public final double intakeSpeed =  -.5;
 
-  public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_LEFT, MotorType.kBrushless);
-  public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_RIGHT, MotorType.kBrushless);
+  public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_TOP, MotorType.kBrushless);
+  public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_BOTTOM, MotorType.kBrushless);
 
   public boolean armUp = true;
 
