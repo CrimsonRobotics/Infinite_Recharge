@@ -35,9 +35,9 @@ public class RobotContainer {
   public Joystick Joystick1 = new Joystick(0);
   public Joystick Joystick2 = new Joystick(1);
 
-  public JoystickButton intakeIn = new JoystickButton(Joystick1, 1);
-  public JoystickButton intakeToggleArm = new JoystickButton(Joystick1, 2);
-  public JoystickButton Outtake = new JoystickButton(Joystick1, 3);
+  public JoystickButton intakeIn = new JoystickButton(Joystick1, Constants.INTAKE_IN_BUTTON);
+  public JoystickButton intakeToggleArm = new JoystickButton(Joystick1, Constants.INTAKE_ARM_BUTTON);
+  public JoystickButton outtakeButton = new JoystickButton(Joystick1, Constants.OUTTAKE_BUTTON);
 
   public boolean intakeArmUp = true;
 
@@ -73,7 +73,7 @@ public class RobotContainer {
     intakeToggleArm.whenPressed(new IntakeArmToggle());
 
     //Outtake
-    Outtake.whenPressed(new OuttakeSequence());
+    outtakeButton.whenPressed(new OuttakeSequence());
   }
 
 
