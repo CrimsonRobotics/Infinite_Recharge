@@ -23,8 +23,8 @@ public final class Constants {
 
     public final static int OUTTAKE_SPARK = 59;
     public final static int OUTTAKE_SOLENOID = 1;
-
-    public final static int INTAKE_MODULE = 10;
+    
+    public final static int OUTTAKE_PCM1 = 1;
 
     public final static int INTAKE_IN_BUTTON = 1;
     public final static int INTAKE_ARM_BUTTON = 2;
