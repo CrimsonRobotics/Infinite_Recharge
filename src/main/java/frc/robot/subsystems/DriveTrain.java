@@ -65,11 +65,11 @@ public class DriveTrain extends SubsystemBase {
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
     // backRight.set(forwardSpeed);
-    rightMotors.set(forwardSpeed);
+    // rightMotors.set(forwardSpeed);
     // middleRight.set(forwardSpeed);
     // frontRight.set(forwardSpeed);
     
-    // diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
+    diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 
   public static void ShiftHigh() {
