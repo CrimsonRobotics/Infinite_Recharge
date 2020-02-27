@@ -18,17 +18,20 @@ public class Outtake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  public final double outtakeMoveSpeed = .3;
-  public final double outtakeShootSpeed = .8;
+  public final double outtakeMoveSpeed = -.3;
+  public final double outtakeShootSpeed = -.8;
 
-  public CANSparkMax outtake = new CANSparkMax(Constants.OUTTAKE_SPARK, MotorType.kBrushless);
+  public CANSparkMax outtake;
 
-  public Solenoid outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_PCM1, Constants.OUTTAKE_SOLENOID);
+  public Solenoid outtakeDoorSolenoid;
 
   public boolean doorOpen = false;
 
   public Outtake() {
     doorOpen = false;
+
+    outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_PCM1, Constants.OUTTAKE_SOLENOID);
+    outtake = new CANSparkMax(Constants.OUTTAKE_SPARK, MotorType.kBrushless);
   }
 
   public void OuttakeShoot() { //Outtake forwards
@@ -40,14 +43,17 @@ public class Outtake extends SubsystemBase {
   }
 
   public void OuttakeReverse() { //Outtake reverse
+    System.out.println("Reverse outtake");
     outtake.set(-outtakeMoveSpeed);
   }
 
   public void OuttakeStop() { //Stops conveyor
+    // System.out.println("Stopping outtake");
     outtake.set(0);
   }
 
   public void OuttakeSlowIn() {
+    System.out.println("Outtake slow in");
     outtake.set(outtakeMoveSpeed);
   }
 

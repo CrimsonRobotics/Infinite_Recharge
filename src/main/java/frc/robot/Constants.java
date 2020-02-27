@@ -16,8 +16,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public final static int INTAKE_TOP = 55;
-    public final static int INTAKE_BOTTOM = 48;
+    public final static int INTAKE_TOP = 56; //CONTROL PANEL SPINNER
+    public final static int INTAKE_BOTTOM = 48; //NOT WORKING
 
     public final static double INTAKE_SPEED = -.7;
 

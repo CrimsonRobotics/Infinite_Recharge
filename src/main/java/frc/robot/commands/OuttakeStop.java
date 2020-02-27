@@ -16,7 +16,7 @@ public class OuttakeStop extends CommandBase {
    */
   public OuttakeStop() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake);
+    addRequirements(Robot.outtake);
   }
 
   // Called when the command is initially scheduled.
@@ -38,6 +38,6 @@ public class OuttakeStop extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

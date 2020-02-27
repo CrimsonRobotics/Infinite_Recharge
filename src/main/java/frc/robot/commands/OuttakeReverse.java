@@ -16,7 +16,7 @@ public class OuttakeReverse extends CommandBase {
    */
   public OuttakeReverse() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake);
+    addRequirements(Robot.outtake);
   }
 
   // Called when the command is initially scheduled.

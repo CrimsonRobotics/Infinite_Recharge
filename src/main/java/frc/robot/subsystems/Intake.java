@@ -20,34 +20,49 @@ public class Intake extends SubsystemBase {
    */
   public final double intakeSpeed =  -.5;
 
-  public CANSparkMax intakeLeft = new CANSparkMax(Constants.INTAKE_TOP, MotorType.kBrushless);
-  public CANSparkMax intakeRight = new CANSparkMax(Constants.INTAKE_BOTTOM, MotorType.kBrushless);
+  public CANSparkMax intakeTop;
+  public CANSparkMax intakeBottom;
+  public CANSparkMax moveTest;
 
   public boolean armUp = true;
 
   public Intake() {
     armUp = true;
+    intakeTop = new CANSparkMax(Constants.INTAKE_TOP, MotorType.kBrushless);
+    intakeBottom = new CANSparkMax(Constants.INTAKE_BOTTOM, MotorType.kBrushless);
+
+    moveTest = new CANSparkMax(49, MotorType.kBrushless);
+    moveTest = new CANSparkMax(50, MotorType.kBrushless);
+    moveTest = new CANSparkMax(51, MotorType.kBrushless);
+    moveTest = new CANSparkMax(59, MotorType.kBrushless);
+    moveTest = new CANSparkMax(57, MotorType.kBrushed);
+    moveTest = new CANSparkMax(58, MotorType.kBrushed);
+    moveTest = new CANSparkMax(60, MotorType.kBrushless);
+    moveTest = new CANSparkMax(61, MotorType.kBrushless);
+    moveTest = new CANSparkMax(62, MotorType.kBrushless);
+    // moveTest.set(.2);
   }
 
   public void IntakeIn(double speed) {
-    intakeLeft.set(speed);
-    intakeRight.set(-speed);
+    // System.out.println("Intake in");
+    intakeTop.set(speed);
+    intakeBottom.set(-speed);
 
-    double encoderRpm = intakeLeft.getEncoder().getVelocity();
+    double encoderRpm = intakeTop.getEncoder().getVelocity();
     SmartDashboard.putNumber("Intake Encoder RPM", encoderRpm);
     if (encoderRpm <= 100) {
-      System.out.println("Intake may be jammed");
+      // System.out.println("Intake may be jammed");
     }
   }
 
   public void IntakeStop() {
-    intakeLeft.set(0);
-    intakeRight.set(0);
+    intakeTop.set(0);
+    intakeBottom.set(0);
   }
 
   public void IntakeOut(double speed) { //Spit out balls via intake
-    intakeLeft.set(-speed);
-    intakeRight.set(speed);
+    intakeTop.set(-speed);
+    intakeBottom.set(speed);
   }
 
   public void IntakeArmToggle() { //If arm is down, send it up and vice-versa

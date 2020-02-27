@@ -14,7 +14,9 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeArmToggle;
 import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeStop;
 import frc.robot.commands.OuttakeSequence;
+import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -56,6 +58,9 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
+    Robot.outtake.setDefaultCommand(new OuttakeStop());
+    Robot.intake.setDefaultCommand(new IntakeStop());
   }
 
 
