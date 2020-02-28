@@ -30,16 +30,6 @@ public class Intake extends SubsystemBase {
     armUp = true;
     intakeTop = new CANSparkMax(Constants.INTAKE_TOP, MotorType.kBrushless);
     intakeBottom = new CANSparkMax(Constants.INTAKE_BOTTOM, MotorType.kBrushless);
-
-    moveTest = new CANSparkMax(49, MotorType.kBrushless);
-    moveTest = new CANSparkMax(50, MotorType.kBrushless);
-    moveTest = new CANSparkMax(51, MotorType.kBrushless);
-    moveTest = new CANSparkMax(59, MotorType.kBrushless);
-    moveTest = new CANSparkMax(57, MotorType.kBrushed);
-    moveTest = new CANSparkMax(58, MotorType.kBrushed);
-    moveTest = new CANSparkMax(60, MotorType.kBrushless);
-    moveTest = new CANSparkMax(61, MotorType.kBrushless);
-    moveTest = new CANSparkMax(62, MotorType.kBrushless);
     // moveTest.set(.2);
   }
 

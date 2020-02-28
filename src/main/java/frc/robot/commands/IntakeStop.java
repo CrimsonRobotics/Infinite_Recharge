@@ -27,7 +27,7 @@ public class IntakeStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Intake Stop");
+    // System.out.println("Intake Stop");
     Robot.intake.IntakeStop();
   }
 

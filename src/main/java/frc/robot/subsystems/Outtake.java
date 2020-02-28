@@ -18,7 +18,7 @@ public class Outtake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  public final double outtakeMoveSpeed = -.3;
+  public final double outtakeMoveSpeed = -.2;
   public final double outtakeShootSpeed = -.8;
 
   public CANSparkMax outtake;
