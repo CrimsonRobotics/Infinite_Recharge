@@ -39,36 +39,34 @@ public class DriveTrain extends SubsystemBase {
   static Solenoid shiftyRight;
 
   public DriveTrain(int FL, int ML, int BL,  
-    int FR, int MR, int BR, 
+    int FR, int MR, int BR,
+    int mod1, int mod2, 
     int SHIFTYL_ID, int SHIFTYR_ID) {
     frontLeft = new CANSparkMax(FL,MotorType.kBrushless);
     middleLeft = new CANSparkMax(ML, MotorType.kBrushless);
     backLeft = new CANSparkMax(BL,MotorType.kBrushless);
 
+
     frontRight = new CANSparkMax(FR, MotorType.kBrushless);
     middleRight = new CANSparkMax(MR, MotorType.kBrushless);
     backRight = new CANSparkMax(BR,MotorType.kBrushless);
 
-    leftMotors = new SpeedControllerGroup(frontLeft, backLeft, middleLeft);
-    rightMotors = new SpeedControllerGroup(frontRight, backRight, middleRight);
+    leftMotors = new SpeedControllerGroup(middleLeft, frontLeft, backLeft);
+    rightMotors = new SpeedControllerGroup(middleRight, frontRight, backRight);
 
     leftMotors.setInverted(true);
-    frontRight.setInverted(false);
+    rightMotors.setInverted(true);
+
+    middleLeft.setInverted(true);
     middleRight.setInverted(true);
-    backRight.setInverted(false);
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
     
-    shiftyLeft = new Solenoid(SHIFTYL_ID);
-    shiftyRight = new Solenoid(SHIFTYR_ID);
+    shiftyLeft = new Solenoid(mod1, SHIFTYL_ID);
+    shiftyRight = new Solenoid(mod1, SHIFTYR_ID);
   }
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
-    // backRight.set(forwardSpeed);
-    // rightMotors.set(forwardSpeed);
-    // middleRight.set(forwardSpeed);
-    // frontRight.set(forwardSpeed);
-    
     diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
   }
 

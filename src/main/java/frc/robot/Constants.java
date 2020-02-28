@@ -18,15 +18,16 @@ package frc.robot;
 public final class Constants {
 
     // Drivetrain
-    public final static int fLID = 55;
-    public final static int mLID = 60;
-    public final static int bLID = 54;
-
+    public final static int fLID = 60;
+    public final static int mLID = 61;
+    public final static int bLID = 62;
+    
     public final static int fRID = 49;
     public final static int mRID = 50;
     public final static int bRID = 51;
 
-    // public final static int mod1ID = 0;
+    public final static int mod1ID = 0;
+    public final static int mod2ID = 1;
     public final static int shiftyLID = 0;
     public final static int shiftyRID = 1;
 

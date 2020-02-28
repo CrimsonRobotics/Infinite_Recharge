@@ -27,28 +27,29 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrain drivetrain = new DriveTrain(
     Constants.fLID, Constants.mLID, Constants.bLID, Constants.fRID, Constants.mRID, Constants.bRID,
+    Constants.mod1ID, Constants.mod2ID,
     Constants.shiftyLID, Constants.shiftyRID);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick Joystick1;
-  public Joystick Joystick2;
+  public Joystick JoystickR;
+  public Joystick JoystickL;
   JoystickButton shiftyButton;
 
   public Joystick rightJoystick(){
-    return Joystick1;
+    return JoystickR;
   }
 
   public Joystick leftJoystick(){
-    return Joystick2;
+    return JoystickL;
   }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    this.Joystick1 = new Joystick(0);
-    this.Joystick2 = new Joystick(1);
-    shiftyButton = new JoystickButton(Joystick2, 1);
+    this.JoystickR = new Joystick(1);
+    this.JoystickL = new Joystick(0);
+    shiftyButton = new JoystickButton(JoystickL, 1);
     // Configure the button bindings
     configureButtonBindings();
     drivetrain.setDefaultCommand(new Drive(drivetrain, leftJoystick(), rightJoystick()));
