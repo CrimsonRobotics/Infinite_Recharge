@@ -16,6 +16,7 @@ import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.OuttakeSequence;
+import frc.robot.commands.OuttakeShoot;
 import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,21 +35,21 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick Joystick1 = new Joystick(0);
-  public Joystick Joystick2 = new Joystick(1);
+  public Joystick joystickR = new Joystick(0);
+  public Joystick joystickL = new Joystick(1);
 
-  public JoystickButton intakeIn = new JoystickButton(Joystick1, Constants.INTAKE_IN_BUTTON);
-  public JoystickButton intakeToggleArm = new JoystickButton(Joystick1, Constants.INTAKE_ARM_BUTTON);
-  public JoystickButton outtakeButton = new JoystickButton(Joystick1, Constants.OUTTAKE_BUTTON);
+  public JoystickButton intakeIn = new JoystickButton(joystickR, Constants.INTAKE_IN_BUTTON);
+  public JoystickButton intakeToggleArm = new JoystickButton(joystickR, Constants.INTAKE_ARM_BUTTON);
+  public JoystickButton outtakeButton = new JoystickButton(joystickR, 10);
 
   public boolean intakeArmUp = true;
 
   public Joystick rightJoystick(){
-    return Joystick1;
+    return joystickR;
   }
 
   public Joystick leftJoystick(){
-    return Joystick2;
+    return joystickL;
   }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -59,8 +60,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    Robot.outtake.setDefaultCommand(new OuttakeStop());
-    Robot.intake.setDefaultCommand(new IntakeStop());
+    // Robot.outtake.setDefaultCommand(new OuttakeStop());
+    // Robot.intake.setDefaultCommand(new IntakeStop());
   }
 
 
@@ -72,13 +73,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Intake
-    intakeIn.whileHeld(new IntakeIn(Constants.INTAKE_SPEED));
+    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
     intakeToggleArm.whenPressed(new IntakeArmToggle());
 
     //Outtake
-    outtakeButton.whenPressed(new OuttakeSequence());
+    // outtakeButton.whenPressed(new OuttakeSequence());
+    outtakeButton.whenPressed(new OuttakeShoot());
+    outtakeButton.whenReleased(new OuttakeStop());
   }
 
 

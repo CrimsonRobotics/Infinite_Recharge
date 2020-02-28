@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public final static int INTAKE_TOP = 56;
-    public final static int INTAKE_BOTTOM = 48;
+    public final static int INTAKE_BOTTOM = 45;
 
     public final static double INTAKE_SPEED = -.7;
 
@@ -26,7 +26,7 @@ public final class Constants {
     
     public final static int OUTTAKE_PCM1 = 1;
 
-    public final static int INTAKE_IN_BUTTON = 4;
-    public final static int INTAKE_ARM_BUTTON = 5;
-    public final static int OUTTAKE_BUTTON = 6;
+    public final static int INTAKE_IN_BUTTON = 8;
+    public final static int INTAKE_ARM_BUTTON = 9;
+    public final static int OUTTAKE_BUTTON = 10;
 }
