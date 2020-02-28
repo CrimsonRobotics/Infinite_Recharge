@@ -35,6 +35,7 @@ public class RobotContainer {
   public Joystick JoystickR;
   public Joystick JoystickL;
   JoystickButton shiftyButton;
+  JoystickButton unshiftyButton;
 
   public Joystick rightJoystick(){
     return JoystickR;
@@ -50,6 +51,7 @@ public class RobotContainer {
     this.JoystickR = new Joystick(1);
     this.JoystickL = new Joystick(0);
     shiftyButton = new JoystickButton(JoystickL, 1);
+    unshiftyButton = new JoystickButton(JoystickL, 2);
     // Configure the button bindings
     configureButtonBindings();
     drivetrain.setDefaultCommand(new Drive(drivetrain, leftJoystick(), rightJoystick()));
@@ -66,7 +68,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     shiftyButton.whenPressed(new ShiftHigh());
-    shiftyButton.whenReleased(new ShiftLow()); 
+    unshiftyButton.whenPressed(new ShiftLow()); 
   }
 
 

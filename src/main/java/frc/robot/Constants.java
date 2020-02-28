@@ -28,7 +28,7 @@ public final class Constants {
 
     public final static int mod1ID = 0;
     public final static int mod2ID = 1;
-    public final static int shiftyLID = 0;
-    public final static int shiftyRID = 1;
+    public final static int[] shiftyLID = {0, 1};
+    public final static int[] shiftyRID = {2, 3};
 
 }

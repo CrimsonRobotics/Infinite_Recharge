@@ -10,9 +10,11 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -35,13 +37,14 @@ public class DriveTrain extends SubsystemBase {
   private final SpeedControllerGroup rightMotors;
   private final DifferentialDrive diffDrive;
 
-  static Solenoid shiftyLeft;
-  static Solenoid shiftyRight;
+  static DoubleSolenoid shiftyLeft;
+  static DoubleSolenoid shiftyRight;
 
-  public DriveTrain(int FL, int ML, int BL,  
+  public DriveTrain(
+    int FL, int ML, int BL,  
     int FR, int MR, int BR,
     int mod1, int mod2, 
-    int SHIFTYL_ID, int SHIFTYR_ID) {
+    int[] SHIFTYL_ID, int[] SHIFTYR_ID) {
     frontLeft = new CANSparkMax(FL,MotorType.kBrushless);
     middleLeft = new CANSparkMax(ML, MotorType.kBrushless);
     backLeft = new CANSparkMax(BL,MotorType.kBrushless);
@@ -62,8 +65,8 @@ public class DriveTrain extends SubsystemBase {
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
     
-    shiftyLeft = new Solenoid(mod1, SHIFTYL_ID);
-    shiftyRight = new Solenoid(mod1, SHIFTYR_ID);
+    shiftyLeft = new DoubleSolenoid(mod1, SHIFTYL_ID[0], SHIFTYL_ID[1]);
+    shiftyRight = new DoubleSolenoid(mod1, SHIFTYR_ID[0], SHIFTYR_ID[1]);
   }
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
@@ -71,13 +74,13 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public static void ShiftHigh() {
-    shiftyLeft.set(true);
-    shiftyRight.set(true);
+    // shiftyLeft.set(Value.kForward);
+    shiftyRight.set(Value.kForward);
   }
   
   public static void ShiftLow() {
-    shiftyLeft.set(false);
-    shiftyRight.set(false);
+    // shiftyLeft.set(Value.kReverse);
+    shiftyRight.set(Value.kReverse);
   }
 
   @Override
