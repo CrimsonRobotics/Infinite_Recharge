@@ -44,7 +44,7 @@ public class DriveTrain extends SubsystemBase {
     int FL, int ML, int BL,  
     int FR, int MR, int BR,
     int mod1, int mod2, 
-    int[] SHIFTYL_ID, int[] SHIFTYR_ID) {
+    int SHIFTYL_IDF, int SHIFTYL_IDR, int SHIFTYR_IDF, int SHIFTYR_IDR) {
     frontLeft = new CANSparkMax(FL,MotorType.kBrushless);
     middleLeft = new CANSparkMax(ML, MotorType.kBrushless);
     backLeft = new CANSparkMax(BL,MotorType.kBrushless);
@@ -65,8 +65,8 @@ public class DriveTrain extends SubsystemBase {
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
     
-    shiftyLeft = new DoubleSolenoid(mod1, SHIFTYL_ID[0], SHIFTYL_ID[1]);
-    shiftyRight = new DoubleSolenoid(mod1, SHIFTYR_ID[0], SHIFTYR_ID[1]);
+    shiftyLeft = new DoubleSolenoid(mod2, SHIFTYL_IDF, SHIFTYL_IDR);
+    shiftyRight = new DoubleSolenoid(mod2, SHIFTYR_IDF, SHIFTYR_IDR);
   }
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){

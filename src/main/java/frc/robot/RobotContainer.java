@@ -28,15 +28,15 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain(
     Constants.fLID, Constants.mLID, Constants.bLID, Constants.fRID, Constants.mRID, Constants.bRID,
     Constants.mod1ID, Constants.mod2ID,
-    Constants.shiftyLID, Constants.shiftyRID);
+    Constants.shiftyLIDF, Constants.shiftyLIDR, Constants.shiftyRIDF, Constants.shiftyRIDR);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public Joystick JoystickR;
   public Joystick JoystickL;
   JoystickButton shiftyButton;
-  JoystickButton unshiftyButton;
-
+  //JoystickButton unshiftyButton;
+  shiftyButton = new JoystickButton(JoystickL, 1);
   public Joystick rightJoystick(){
     return JoystickR;
   }
@@ -50,8 +50,9 @@ public class RobotContainer {
   public RobotContainer() {
     this.JoystickR = new Joystick(1);
     this.JoystickL = new Joystick(0);
-    shiftyButton = new JoystickButton(JoystickL, 1);
-    unshiftyButton = new JoystickButton(JoystickL, 2);
+    shiftyButton.whenPressed(new ShiftHigh());
+    shiftyButton.whenReleased(new ShiftLow());
+   // unshiftyButton = new JoystickButton(JoystickL, 2);
     // Configure the button bindings
     configureButtonBindings();
     drivetrain.setDefaultCommand(new Drive(drivetrain, leftJoystick(), rightJoystick()));
@@ -68,7 +69,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     shiftyButton.whenPressed(new ShiftHigh());
-    unshiftyButton.whenPressed(new ShiftLow()); 
+    shiftyButton.whenReleased(new ShiftLow());
+  //  unshiftyButton.whenPressed(new ShiftLow()); 
   }
 
 
