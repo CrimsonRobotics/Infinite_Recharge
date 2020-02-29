@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
    * Creates a new Intake.
    */ 
   public final double intakeSpeed =  -.5;
-
+  
   public CANSparkMax intakeTop;
   public CANSparkMax intakeBottom;
   public CANSparkMax moveTest;
