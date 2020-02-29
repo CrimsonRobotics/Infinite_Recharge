@@ -11,6 +11,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeArmToggle;
+import frc.robot.commands.IntakeCatchExtra;
+import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeStop;
+import frc.robot.commands.OuttakeSequence;
+import frc.robot.commands.OuttakeShoot;
+import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,12 +34,43 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  public Joystick joystickR = new Joystick(0);
+  public Joystick joystickL = new Joystick(1);
+
+  public JoystickButton intakeIn = new JoystickButton(joystickR, 8);
+  public JoystickButton intakeToggleArm = new JoystickButton(joystickR, 9);
+  public JoystickButton outtakeButton = new JoystickButton(joystickR, 10);
+
+  public boolean intakeArmUp = true;
+
+  public Joystick rightJoystick(){
+    return joystickR;
+  }
+
+  public Joystick leftJoystick(){
+    return joystickL;
+  }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    intakeArmUp = true;
+    
+    //Intake
+    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
+    intakeIn.whenReleased(new IntakeCatchExtra());
+
+    intakeToggleArm.whenPressed(new IntakeArmToggle());
+
+    //Outtake
+    // outtakeButton.whenPressed(new OuttakeSequence());
+    outtakeButton.whenPressed(new OuttakeShoot());
+    outtakeButton.whenReleased(new OuttakeStop());
     // Configure the button bindings
     configureButtonBindings();
+
+    // Robot.outtake.setDefaultCommand(new OuttakeStop());
+    // Robot.intake.setDefaultCommand(new IntakeStop());
   }
 
   /**
