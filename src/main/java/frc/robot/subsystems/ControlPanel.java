@@ -61,7 +61,7 @@ public class ControlPanel extends SubsystemBase {
   DoubleSolenoid spinnerSolenoid;
 
   public ControlPanel() {
-    panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
+    panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushed);
     spinnerSolenoid = new DoubleSolenoid(Constants.pcm1ID, Constants.controlPanelSolenoidF, Constants.controlPanelSolenoidR);
 
   /*  try {
