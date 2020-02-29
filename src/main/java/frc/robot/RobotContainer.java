@@ -24,32 +24,42 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private int climberMotor1;
-  private int lateralMotor;
-  private int climberMotor2;
 
-  public Joystick Joystick1;
-  public Joystick Joystick2;
+  public Joystick joystickR = new Joystick(0);
+  public Joystick joystickL = new Joystick(1);
 
-  public JoystickButton elevatorUpButton;
-  public JoystickButton elevatorDownButton;
+
+  public JoystickButton elevatorUpButton = new JoystickButton(joystickR, 3);
+  public JoystickButton elevatorDownButton = new JoystickButton(joystickR, 1);
+
+  public JoystickButton latMotorRightButton = new JoystickButton(joystickR, 5);
+  public JoystickButton latMotorLeftButton = new JoystickButton(joystickR, 6);
+  public JoystickButton latMotorStopButton = new JoystickButton(joystickR, 7);
+  
+  public JoystickButton winchStartButton = new JoystickButton(joystickR, 8);
 
   public Joystick rightJoystick(){
-    return Joystick1;
+    return joystickR;
   }
 
   public Joystick leftJoystick(){
-    return Joystick2;
+    return joystickL;
   }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    this.Joystick1 = new Joystick(0);
-    this.Joystick2 = new Joystick(1);
+    elevatorUpButton.whenPressed(new ElevatorUp());
+    elevatorUpButton.whenReleased(new ElevatorStop());
+    elevatorDownButton.whenPressed(new ElevatorDown());
+    elevatorDownButton.whenReleased(new ElevatorStop());
 
-    elevatorUpButton = new JoystickButton(Joystick1, 3);
-    elevatorDownButton = new JoystickButton(Joystick1, 1);
+    latMotorLeftButton.whenPressed(new LateralMotorLeft());
+    latMotorRightButton.whenPressed(new LateralMotorRight());
+    latMotorStopButton.whenPressed(new LateralMotorStop());
+
+    // latMotorLeftButton.whenPressed(new LateralMotorLeft());
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -65,10 +75,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    elevatorUpButton.whenPressed(new ElevatorUp());
-    elevatorUpButton.whenReleased(new ElevatorStop());
-    elevatorDownButton.whenPressed(new ElevatorDown());
-    elevatorDownButton.whenReleased(new ElevatorStop());
   }
 
 

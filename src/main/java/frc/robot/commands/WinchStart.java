@@ -8,16 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-// import frc.robot.subsystems.Climber;
 import frc.robot.Robot;
-import frc.robot.subsystems.Climber;
 
-public class ElevatorDown extends CommandBase {
+public class WinchStart extends CommandBase {
   /**
-   * Creates a new WinchDown.
+   * Creates a new WinchStart.
    */
-  public ElevatorDown() {
+  public WinchStart() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +27,7 @@ public class ElevatorDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Climber.elevatorDown();
+    Robot.climber.winchStart();
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +38,12 @@ public class ElevatorDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    if (Robot.climber.winchEncoder.getPosition() - Robot.climber.winchStartPosition >= 9000) {
+      System.out.println("Winch has reached desired position");
+      return true;
+    } else {
+      return false;
+    }
+    // return true;
   }
 }
