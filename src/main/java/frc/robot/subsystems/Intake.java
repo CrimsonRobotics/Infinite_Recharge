@@ -64,7 +64,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void RaiseIntakeArm() {
-    System.out.println("Rhaising intake arm");
+    System.out.println("Raising intake arm");
   }
 
   public void LowerIntakeArm() {

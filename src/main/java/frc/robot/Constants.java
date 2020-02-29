@@ -19,12 +19,12 @@ public final class Constants {
     public final static int INTAKE_TOP = 56;
     public final static int INTAKE_BOTTOM = 45;
 
-    public final static double INTAKE_SPEED = -.7;
+    public final static double INTAKE_SPEED = .7;
 
     public final static int OUTTAKE_SPARK = 59;
     public final static int OUTTAKE_SOLENOID = 1;
     
-    public final static int OUTTAKE_PCM1 = 1;
+    public final static int OUTTAKE_PCM1 = 0;
 
     public final static int INTAKE_IN_BUTTON = 8;
     public final static int INTAKE_ARM_BUTTON = 9;

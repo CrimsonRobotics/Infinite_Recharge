@@ -56,7 +56,16 @@ public class RobotContainer {
    */
   public RobotContainer() {
     intakeArmUp = true;
+        //Intake
+    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
+    intakeIn.whenReleased(new IntakeCatchExtra());
 
+    intakeToggleArm.whenPressed(new IntakeArmToggle());
+
+    //Outtake
+    // outtakeButton.whenPressed(new OuttakeSequence());
+    outtakeButton.whenPressed(new OuttakeShoot());
+    outtakeButton.whenReleased(new OuttakeStop());
     // Configure the button bindings
     configureButtonBindings();
 
@@ -72,16 +81,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Intake
-    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
-    intakeIn.whenReleased(new IntakeCatchExtra());
 
-    intakeToggleArm.whenPressed(new IntakeArmToggle());
-
-    //Outtake
-    // outtakeButton.whenPressed(new OuttakeSequence());
-    outtakeButton.whenPressed(new OuttakeShoot());
-    outtakeButton.whenReleased(new OuttakeStop());
   }
 
 
