@@ -26,12 +26,13 @@ public final class Constants {
     // public static final int coDriver = 4;
 
     // Control Panel Variables
-    public static final int cpMotorID = 0;
-    public static final int controlPanelSpinner = 50;
-    public static final int[] controlPanelSolenoid = {0, 1};
+    //public static final int cpMotorID = 0;
+    public static final int controlPanelSpinner = 57;
+    public static final int controlPanelSolenoidF = 6;
+    public static final int controlPanelSolenoidR = 7;
 
     public static final int pcm1ID = 0;
-    public static final int cpSoliniodID = 0;
+    //public static final int cpSoliniodID = 0;
     // Color sensor port definition
     public static final I2C.Port i2c = I2C.Port.kOnboard;
 }

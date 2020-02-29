@@ -57,11 +57,14 @@ public class ControlPanel extends SubsystemBase {
   public boolean foundColor = false;
   public boolean currentlySpinning = false;
 
-  private final CANSparkMax panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
-  private final DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(Constants.controlPanelSolenoid[0], Constants.controlPanelSolenoid[1]);
+  CANSparkMax panelSpinner;
+  DoubleSolenoid spinnerSolenoid;
 
-  public ControlPanel(Port i2c) {
-    try {
+  public ControlPanel() {
+    panelSpinner = new CANSparkMax(Constants.controlPanelSpinner, MotorType.kBrushless);
+    spinnerSolenoid = new DoubleSolenoid(Constants.pcm1ID, Constants.controlPanelSolenoidF, Constants.controlPanelSolenoidR);
+
+  /*  try {
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
       Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
     } catch (IOException ex) {
@@ -79,18 +82,20 @@ public class ControlPanel extends SubsystemBase {
     colorMatch.addColorMatch(greenMatch);
 
     SmartDashboard.putBoolean("Found color", false);
-    SmartDashboard.putBoolean("Spinning", false);
+    SmartDashboard.putBoolean("Spinning", false);*/
   }
 
-  public void CPUp() {
+  public void StartCPSPin() {
     spinnerSolenoid.set(Value.kForward);
+    panelSpinner.set(0.4);
   }
   
-  public void CPDown() {
+  public void EndCPSpin() {
     spinnerSolenoid.set(Value.kReverse);
+    panelSpinner.set(0);
   }
 
-  public void ColorDetect() {
+ /* public void ColorDetect() {
     detectedC = colorSense.getColor();
 
     ColorMatchResult match = colorMatch.matchClosestColor(detectedC);
@@ -168,7 +173,7 @@ public class ControlPanel extends SubsystemBase {
       System.out.println("No gamedata");
     }
   }
-  
+  */
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

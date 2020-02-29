@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BeginCPSpin;
 import frc.robot.commands.ColorDetect;
+import frc.robot.commands.EndCPSpin;
+import frc.robot.commands.StartCPSpin;
 import frc.robot.subsystems.ControlPanel;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -23,21 +25,25 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ControlPanel controlPanel = Robot.controlPanel;
-
-  // private final ColorDetect colorDetect = new ColorDetect(controlPanel);
-
+  //private final ControlPanel controlPanel = new ControlPanel();
+  //private final ColorDetect colorDetect = new ColorDetect(controlPanel);
+  
   //Joysticks and buttons
   private final Joystick driverLeft = new Joystick(Constants.driverLeft);
   private final JoystickButton spinControlPanel = new JoystickButton(driverLeft, 1);
 
+  public Joystick leftJoystick(){
+    return driverLeft;
+  }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    spinControlPanel.whenPressed(new StartCPSpin());
+    spinControlPanel.whenReleased(new EndCPSpin());
     configureButtonBindings();
-    controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
+   // controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
   }
 
   /**
@@ -47,7 +53,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    spinControlPanel.whenPressed(new BeginCPSpin());
+    
   }
 
 

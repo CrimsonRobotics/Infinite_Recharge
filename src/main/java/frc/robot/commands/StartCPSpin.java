@@ -9,18 +9,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.ControlPanel;
 
-public class ColorDetect extends CommandBase {
+public class StartCPSpin extends CommandBase {
   /**
-   * Creates a new ColorDetect.
+   * Creates a new BeginCPSpin.
    */
-  public ColorDetect(ControlPanel controlPanel) {
+  public StartCPSpin() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(controlPanel);
+    addRequirements(Robot.controlPanel);
   }
 
-// Called when the command is initially scheduled.
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
@@ -28,7 +27,7 @@ public class ColorDetect extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   // Robot.controlPanel.ColorDetect();
+    Robot.controlPanel.StartCPSPin();
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +38,6 @@ public class ColorDetect extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
