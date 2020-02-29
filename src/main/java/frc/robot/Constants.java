@@ -22,7 +22,10 @@ public final class Constants {
     public final static double INTAKE_SPEED = .7;
 
     public final static int OUTTAKE_SPARK = 59;
-    public final static int OUTTAKE_SOLENOID = 1;
+    public final static int OUTTAKE_SOLENOID = 2;
+
+    public final static int INTAKE_SOLENOID1 = 0;
+    public final static int INTAKE_SOLENOID2 = 1;
     
     public final static int OUTTAKE_PCM1 = 0;
 

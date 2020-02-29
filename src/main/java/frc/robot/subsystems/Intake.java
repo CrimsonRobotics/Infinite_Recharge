@@ -10,6 +10,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -17,19 +20,20 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
-   */
+   */ 
   public final double intakeSpeed =  -.5;
 
   public CANSparkMax intakeTop;
   public CANSparkMax intakeBottom;
   public CANSparkMax moveTest;
-
+  public DoubleSolenoid intakeSolenoid;
   public boolean armUp = true;
 
   public Intake() {
     armUp = true;
     intakeTop = new CANSparkMax(Constants.INTAKE_TOP, MotorType.kBrushless);
     intakeBottom = new CANSparkMax(Constants.INTAKE_BOTTOM, MotorType.kBrushless);
+    intakeSolenoid= new DoubleSolenoid(Constants.OUTTAKE_PCM1, Constants.INTAKE_SOLENOID1, Constants.INTAKE_SOLENOID2);
     // moveTest.set(.2);
   }
 
@@ -65,10 +69,12 @@ public class Intake extends SubsystemBase {
 
   public void RaiseIntakeArm() {
     System.out.println("Raising intake arm");
+    intakeSolenoid.set(Value.kForward);
   }
 
   public void LowerIntakeArm() {
     System.out.println("Lowering intake arm");
+    intakeSolenoid.set(Value.kReverse);
   }
 
   @Override
