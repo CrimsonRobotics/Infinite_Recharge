@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class WinchStart extends CommandBase {
+public class WinchStop extends CommandBase {
   /**
    * Creates a new WinchStart.
    */
-  public WinchStart() {
+  public WinchStop() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
   }
@@ -27,7 +27,7 @@ public class WinchStart extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climber.winchStart();
+    Robot.climber.winchStop();
   }
 
   // Called once the command ends or is interrupted.
@@ -39,7 +39,6 @@ public class WinchStart extends CommandBase {
   @Override
   public boolean isFinished() {
       return true;
-    
+    }
     // return true;
-  }
 }

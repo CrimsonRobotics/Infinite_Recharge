@@ -34,7 +34,7 @@ public class RobotContainer {
 
   public JoystickButton latMotorRightButton = new JoystickButton(joystickR, 5);
   public JoystickButton latMotorLeftButton = new JoystickButton(joystickR, 6);
-  public JoystickButton latMotorStopButton = new JoystickButton(joystickR, 7);
+  //public JoystickButton latMotorStopButton = new JoystickButton(joystickR, 7);
   
   public JoystickButton winchStartButton = new JoystickButton(joystickR, 8);
 
@@ -53,10 +53,13 @@ public class RobotContainer {
     elevatorUpButton.whenReleased(new ElevatorStop());
     elevatorDownButton.whenPressed(new ElevatorDown());
     elevatorDownButton.whenReleased(new ElevatorStop());
+    winchStartButton.whenPressed(new WinchStart());
+    winchStartButton.whenReleased(new WinchStop());
 
     latMotorLeftButton.whenPressed(new LateralMotorLeft());
+    latMotorLeftButton.whenReleased(new LateralMotorStop());
     latMotorRightButton.whenPressed(new LateralMotorRight());
-    latMotorStopButton.whenPressed(new LateralMotorStop());
+    latMotorRightButton.whenReleased(new LateralMotorStop());
 
     // latMotorLeftButton.whenPressed(new LateralMotorLeft());
 

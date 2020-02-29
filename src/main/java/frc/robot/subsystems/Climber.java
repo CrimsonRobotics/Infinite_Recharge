@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -35,10 +36,12 @@ public static double lastEncoderPosition;
   public static CANEncoder winchEncoder;
 
   public double winchStartPosition;
+  //Solenoid hello;
 
   public Climber(int elevatorMotorID) {
     elevatorMotor = new CANSparkMax(elevatorMotorID, MotorType.kBrushed);
     winchMotor = new CANSparkMax(Constants.WINCH_MOTOR, MotorType.kBrushless);
+   // hello = new Solenoid(0,1);
 
     winchEncoder = new CANEncoder(winchMotor);
     winchStartPosition = winchEncoder.getPosition();
@@ -48,19 +51,19 @@ public static double lastEncoderPosition;
   }
 
   public static void elevatorUp() {
-    elevatorMotor.set(1);
+    elevatorMotor.set(-.3);
     goalPointSet = false;
     SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorDown() {
-    elevatorMotor.set(-0.1);
+    elevatorMotor.set(0.1);
     goalPointSet = false;
     SmartDashboard.putNumber("Encoder is at pos: ", elevatorEncoder.getPosition());
   }
 
   public static void elevatorStop() {
-    if (!goalPointSet) {
+  /*  if (!goalPointSet) {
       goalPoint = elevatorEncoder.getPosition();
       goalPointSet = true;
     }
@@ -73,7 +76,12 @@ public static double lastEncoderPosition;
 
     if (elevatorEncoder.getPosition() >= (goalPoint - variance) && elevatorEncoder.getPosition() <= (goalPoint + variance)) {
       elevatorMotor.set(0.13);
-    }
+    }*/
+    elevatorMotor.set(-0.17);
+  }
+
+  public void ElevatorZero(){
+    elevatorMotor.set(0);
   }
 
   public void winchStart() {
