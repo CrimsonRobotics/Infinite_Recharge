@@ -62,8 +62,10 @@ public class Intake extends SubsystemBase {
   public void IntakeArmToggle() { //If arm is down, send it up and vice-versa
     if (armUp == true) {
       LowerIntakeArm();
+      armUp = false;
     } else {
       RaiseIntakeArm();
+      armUp = true;
     }
   }
 
