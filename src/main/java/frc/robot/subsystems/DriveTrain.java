@@ -74,12 +74,12 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public static void ShiftHigh() {
-    // shiftyLeft.set(Value.kForward);
+    shiftyLeft.set(Value.kForward);
     shiftyRight.set(Value.kForward);
   }
   
   public static void ShiftLow() {
-    // shiftyLeft.set(Value.kReverse);
+     shiftyLeft.set(Value.kReverse);
     shiftyRight.set(Value.kReverse);
   }
 

@@ -32,11 +32,11 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick JoystickR;
-  public Joystick JoystickL;
-  JoystickButton shiftyButton;
+  public Joystick JoystickR = new Joystick(0);
+  public Joystick JoystickL = new Joystick(1);
+  public JoystickButton shiftyButton = new JoystickButton(JoystickR, 1);
   //JoystickButton unshiftyButton;
-  shiftyButton = new JoystickButton(JoystickL, 1);
+
   public Joystick rightJoystick(){
     return JoystickR;
   }
