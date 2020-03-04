@@ -34,7 +34,7 @@ public class IntakeCatchExtra extends SequentialCommandGroup {
       new IntakeReverse(Constants.INTAKE_SPEED / 2), 
       new WaitCommand(.1), 
       new IntakeReverse(Constants.INTAKE_SPEED), 
-      new WaitCommand(.2), 
+      new WaitCommand(.3), 
       new IntakeStop()
     );
   }

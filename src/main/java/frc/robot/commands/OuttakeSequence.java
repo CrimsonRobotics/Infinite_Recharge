@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Robot;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -17,6 +18,12 @@ public class OuttakeSequence extends SequentialCommandGroup {
   /**
    * Creates a new OuttakeSequence.
    */
+  @Override
+  public void initialize() {
+    // TODO Auto-generated method stub
+    super.initialize();
+    Robot.m_robotContainer.currentOuttakeSequence = this;
+  }
   //Open door
   //Wait .25 seconds for door to open
   //Start running outtake conveyor

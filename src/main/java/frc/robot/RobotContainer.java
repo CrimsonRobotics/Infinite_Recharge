@@ -19,6 +19,7 @@ import frc.robot.commands.OuttakeSequence;
 import frc.robot.commands.OuttakeShoot;
 import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Outtake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -37,11 +38,13 @@ public class RobotContainer {
   public Joystick joystickR = new Joystick(0);
   public Joystick joystickL = new Joystick(1);
 
-  public JoystickButton intakeIn = new JoystickButton(joystickR, 8);
-  public JoystickButton intakeToggleArm = new JoystickButton(joystickR, 9);
-  public JoystickButton outtakeButton = new JoystickButton(joystickR, 10);
+  public JoystickButton intakeIn = new JoystickButton(joystickL, 1);
+  public JoystickButton intakeToggleArm = new JoystickButton(joystickL, 3);
+  public JoystickButton outtakeButton = new JoystickButton(joystickR, 1);
 
   public boolean intakeArmUp = true;
+
+  public OuttakeSequence currentOuttakeSequence;
 
   public Joystick rightJoystick(){
     return joystickR;
@@ -63,8 +66,7 @@ public class RobotContainer {
     intakeToggleArm.whenPressed(new IntakeArmToggle());
 
     //Outtake
-    // outtakeButton.whenPressed(new OuttakeSequence());
-    outtakeButton.whenPressed(new OuttakeShoot());
+    outtakeButton.whenPressed(new OuttakeSequence());
     outtakeButton.whenReleased(new OuttakeStop());
     // Configure the button bindings
     configureButtonBindings();

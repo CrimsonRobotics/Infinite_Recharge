@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Robot;
 
 public class OuttakeStop extends CommandBase {
@@ -27,7 +28,10 @@ public class OuttakeStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("Stopping outtake");
+    Robot.m_robotContainer.currentOuttakeSequence.cancel();
     Robot.outtake.OuttakeStop();
+    // CommandScheduler.getInstance().cancel();
   }
 
   // Called once the command ends or is interrupted.
