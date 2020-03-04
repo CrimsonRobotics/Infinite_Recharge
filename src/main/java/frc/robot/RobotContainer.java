@@ -39,6 +39,7 @@ public class RobotContainer {
   public Joystick joystickL = new Joystick(1);
 
   public JoystickButton intakeIn = new JoystickButton(joystickL, 1);
+  public JoystickButton unjamButton = new JoystickButton(joystickL, 2);
   public JoystickButton intakeToggleArm = new JoystickButton(joystickL, 3);
   public JoystickButton outtakeButton = new JoystickButton(joystickR, 1);
 
@@ -53,6 +54,7 @@ public class RobotContainer {
   public Joystick leftJoystick(){
     return joystickL;
   }
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
