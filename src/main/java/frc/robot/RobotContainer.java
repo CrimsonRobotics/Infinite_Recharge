@@ -32,24 +32,24 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick JoystickR = new Joystick(0);
-  public Joystick JoystickL = new Joystick(1);
-  public JoystickButton shiftyButton = new JoystickButton(JoystickR, 1);
+  public Joystick joystickR = new Joystick(1);
+  public Joystick joystickL = new Joystick(0);
+  public JoystickButton shiftyButton = new JoystickButton(joystickR, 1);
   //JoystickButton unshiftyButton;
 
   public Joystick rightJoystick(){
-    return JoystickR;
+    return joystickR;
   }
 
   public Joystick leftJoystick(){
-    return JoystickL;
+    return joystickL;
   }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    this.JoystickR = new Joystick(1);
-    this.JoystickL = new Joystick(0);
+    this.joystickR = new Joystick(1);
+    this.joystickL = new Joystick(0);
     shiftyButton.whenPressed(new ShiftHigh());
     shiftyButton.whenReleased(new ShiftLow());
    // unshiftyButton = new JoystickButton(JoystickL, 2);
