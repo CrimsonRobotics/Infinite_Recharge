@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Outtake;
@@ -28,6 +29,8 @@ public class Robot extends TimedRobot {
   public static Intake intake;
   public static Outtake outtake;
 
+  public static DriveTrain drivetrain;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -39,6 +42,10 @@ public class Robot extends TimedRobot {
     //CommandScheduler.getInstance().setDefaultCommand(drivetrain, arcadeDrive);
     intake = new Intake();
     outtake = new Outtake();
+    drivetrain = new DriveTrain(
+    Constants.fLID, Constants.mLID, Constants.bLID, Constants.fRID, Constants.mRID, Constants.bRID,
+    Constants.mod1ID, Constants.mod2ID,
+    Constants.shiftyLIDF, Constants.shiftyLIDR, Constants.shiftyRIDF, Constants.shiftyRIDR);
     
     m_robotContainer = new RobotContainer();
   }
