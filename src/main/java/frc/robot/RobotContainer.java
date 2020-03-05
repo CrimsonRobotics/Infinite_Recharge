@@ -29,19 +29,16 @@ public class RobotContainer {
   //private final ColorDetect colorDetect = new ColorDetect(controlPanel);
   
   //Joysticks and buttons
-  private final Joystick driverLeft = new Joystick(Constants.driverLeft);
-  private final JoystickButton spinControlPanel = new JoystickButton(driverLeft, 1);
-
-  public Joystick leftJoystick(){
-    return driverLeft;
-  }
+  private final Joystick operatorL = new Joystick(2);
+  private final JoystickButton spinControlPanel = new JoystickButton(operatorL, 1);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
+    // Control panel
     spinControlPanel.whenPressed(new StartCPSpin());
     spinControlPanel.whenReleased(new EndCPSpin());
+
     configureButtonBindings();
    // controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
   }
