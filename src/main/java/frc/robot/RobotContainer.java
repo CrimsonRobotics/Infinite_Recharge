@@ -50,7 +50,7 @@ public class RobotContainer {
   public Joystick operatorL = new Joystick(2);
 
   // Intake buttons
-  public JoystickButton intakeIn = new JoystickButton(operatorL, 2);
+  // public JoystickButton intakeIn = new JoystickButton(operatorL, 2);
   public JoystickButton unjamButton = new JoystickButton(operatorL, 4);
   public JoystickButton fullUnjam = new JoystickButton(operatorL, 3);
   public JoystickButton intakeToggleArm = new JoystickButton(operatorL, 1);
@@ -74,8 +74,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Intake
-    intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
-    intakeIn.whenReleased(new IntakeCatchExtra());
+    // intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
+    // intakeIn.whenReleased(new IntakeCatchExtra());
 
     intakeToggleArm.whenPressed(new IntakeArmDown());
     intakeToggleArm.whenReleased(new IntakeCatchExtra());
