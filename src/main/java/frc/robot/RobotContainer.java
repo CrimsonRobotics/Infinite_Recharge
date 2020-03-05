@@ -78,7 +78,7 @@ public class RobotContainer {
     intakeIn.whenReleased(new IntakeCatchExtra());
 
     intakeToggleArm.whenPressed(new IntakeArmDown());
-    intakeToggleArm.whenReleased(new IntakeArmUp());
+    intakeToggleArm.whenReleased(new IntakeCatchExtra());
 
     unjamButton.whenPressed(new IntakeReverse(.4));
     unjamButton.whenReleased(new IntakeStop());
