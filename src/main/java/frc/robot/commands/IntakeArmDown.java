@@ -28,6 +28,7 @@ public class IntakeArmDown extends CommandBase {
   @Override
   public void execute() {
     Robot.intake.LowerIntakeArm();
+    Robot.outtake.OuttakeSlowIn();
   }
 
   // Called once the command ends or is interrupted.
