@@ -55,8 +55,6 @@ public class RobotContainer {
 
   public boolean intakeArmUp = true;
 
-  public OuttakeSequence currentOuttakeSequence;
-
   public Joystick rightJoystick(){
     return joystickR;
   }
