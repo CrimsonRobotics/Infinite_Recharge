@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -22,8 +23,6 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */ 
-  public final double intakeSpeed =  -.5;
-  
   public CANSparkMax intakeTop;
   public CANSparkMax intakeBottom;
   public CANSparkMax moveTest;
@@ -72,11 +71,13 @@ public class Intake extends SubsystemBase {
   public void RaiseIntakeArm() {
     System.out.println("Raising intake arm");
     intakeSolenoid.set(Value.kForward);
+    IntakeIn(0);
   }
 
   public void LowerIntakeArm() {
     System.out.println("Lowering intake arm");
     intakeSolenoid.set(Value.kReverse);
+    IntakeIn(Constants.INTAKE_SPEED);
   }
 
   @Override
