@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */ 
-  public final double intakeSpeed =  .5;
+  public final double intakeSpeed =  -.5;
   
   public CANSparkMax intakeTop;
   public CANSparkMax intakeBottom;
@@ -39,8 +39,8 @@ public class Intake extends SubsystemBase {
 
   public void IntakeIn(double speed) {
     // System.out.println("Intake in");
-    intakeTop.set(-speed);
-    intakeBottom.set(speed);
+    intakeTop.set(speed);
+    intakeBottom.set(-speed);
 
     double encoderRpm = intakeTop.getEncoder().getVelocity();
     SmartDashboard.putNumber("Intake Encoder RPM", encoderRpm);
@@ -55,8 +55,8 @@ public class Intake extends SubsystemBase {
   }
 
   public void IntakeOut(double speed) { //Spit out balls via intake
-    intakeTop.set(speed);
-    intakeBottom.set(-speed);
+    intakeTop.set(-speed);
+    intakeBottom.set(speed);
   }
 
   public void IntakeArmToggle() { //If arm is down, send it up and vice-versa

@@ -28,6 +28,7 @@ public class IntakeArmUp extends CommandBase {
   @Override
   public void execute() {
     Robot.intake.RaiseIntakeArm();
+    Robot.intake.IntakeStop();
   }
 
   // Called once the command ends or is interrupted.
