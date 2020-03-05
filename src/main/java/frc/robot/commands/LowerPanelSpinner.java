@@ -28,6 +28,7 @@ public class LowerPanelSpinner extends CommandBase {
   @Override
   public void execute() {
     Robot.controlPanel.lowerSpinner();
+    Robot.controlPanel.spinLeft(0);
   }
 
   // Called once the command ends or is interrupted.

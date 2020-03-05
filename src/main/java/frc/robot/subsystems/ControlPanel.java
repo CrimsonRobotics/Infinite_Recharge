@@ -108,10 +108,12 @@ public class ControlPanel extends SubsystemBase {
   }
 
   public void spinLeft(double speed) {
+    if (spinnerUp == false) return;
     panelSpinner.set(speed);
   }
 
   public void spinRight(double speed) {
+    if (spinnerUp == false) return;
     panelSpinner.set(-speed);
   }
 
