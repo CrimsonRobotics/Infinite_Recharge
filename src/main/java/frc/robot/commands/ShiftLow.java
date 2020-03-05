@@ -8,15 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
-public class FullUnjam extends CommandBase {
+public class ShiftLow extends CommandBase {
   /**
-   * Creates a new FullUnjam.
+   * Creates a new ShiftHigh.
    */
-  public FullUnjam() {
+  public ShiftLow() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
@@ -27,8 +26,7 @@ public class FullUnjam extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.IntakeOut(.3);
-    Robot.outtake.OuttakeReverse(.3);
+    DriveTrain.ShiftLow();
   }
 
   // Called once the command ends or is interrupted.

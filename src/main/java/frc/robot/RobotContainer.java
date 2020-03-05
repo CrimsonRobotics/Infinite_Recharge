@@ -25,6 +25,10 @@ import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Outtake;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -39,37 +43,37 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick joystickR = new Joystick(1);
-  public Joystick joystickL = new Joystick(0);
+  public Joystick driverR = new Joystick(1);
+  public Joystick driverL = new Joystick(0);
 
   public Joystick operatorR = new Joystick(3);
   public Joystick operatorL = new Joystick(2);
 
+  // Intake buttons
   public JoystickButton intakeIn = new JoystickButton(operatorL, 2);
   public JoystickButton unjamButton = new JoystickButton(operatorL, 4);
   public JoystickButton fullUnjam = new JoystickButton(operatorL, 3);
   public JoystickButton intakeToggleArm = new JoystickButton(operatorL, 1);
-  // public JoystickButton outtakeSlowIn = new JoystickButton(operatorL, 4);
 
+  // Outtake buttons
   public JoystickButton outtakeShoot = new JoystickButton(operatorR, 1);
 
-  public boolean intakeArmUp = true;
+  // Drive train buttons
+  public JoystickButton shiftyButton = new JoystickButton(driverL, 1);
 
   public Joystick rightJoystick(){
-    return joystickR;
+    return driverR;
   }
 
   public Joystick leftJoystick(){
-    return joystickL;
+    return driverL;
   }
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    intakeArmUp = true;
-    
-    //Intake
+    // Intake
     intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
@@ -82,11 +86,16 @@ public class RobotContainer {
     fullUnjam.whenPressed(new FullUnjam());
     fullUnjam.whenReleased(new IntakeStop());
 
-    //Outtake
+    // Outtake
     outtakeShoot.whenPressed(new OuttakeSequence());
+    
+    // Drive train
+    shiftyButton.whenPressed(new ShiftHigh());
+    shiftyButton.whenReleased(new ShiftLow());
 
-    // Configure the button bindings
     configureButtonBindings();
+    
+    Robot.drivetrain.setDefaultCommand(new Drive());
   }
 
   /**

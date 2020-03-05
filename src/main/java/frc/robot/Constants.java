@@ -16,6 +16,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //Intake
     public final static int INTAKE_TOP = 56;
     public final static int INTAKE_BOTTOM = 45;
 
@@ -32,4 +33,21 @@ public final class Constants {
     public final static int INTAKE_IN_BUTTON = 8;
     public final static int INTAKE_ARM_BUTTON = 9;
     public final static int OUTTAKE_BUTTON = 10;
+
+    // Drivetrain
+    public final static int fLID = 60;
+    public final static int mLID = 61;
+    public final static int bLID = 62;
+    
+    public final static int fRID = 49;
+    public final static int mRID = 50;
+    public final static int bRID = 51;
+
+    public final static int mod1ID = 0;
+    public final static int mod2ID = 1;
+    public final static int shiftyLIDF = 0;
+    public final static int shiftyLIDR = 1;
+    public final static int shiftyRIDF = 2;
+    public final static int shiftyRIDR = 3;
+
 }
