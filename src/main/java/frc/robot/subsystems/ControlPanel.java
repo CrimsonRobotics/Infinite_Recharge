@@ -76,7 +76,7 @@ public class ControlPanel extends SubsystemBase {
     currentlySpinning = false;
     foundColor = false;
 
-    colorSense = new ColorSensorV3(i2c);
+    colorSense = new ColorSensorV3(Constants.i2c);
 
     colorMatch.addColorMatch(blueMatch);
     colorMatch.addColorMatch(redMatch);
@@ -105,6 +105,14 @@ public class ControlPanel extends SubsystemBase {
   public void lowerSpinner() {
     spinnerSolenoid.set(Value.kReverse);
     spinnerUp = false;
+  }
+
+  public void spinLeft(double speed) {
+    panelSpinner.set(speed);
+  }
+
+  public void spinRight(double speed) {
+    panelSpinner.set(-speed);
   }
 
   //Always looping

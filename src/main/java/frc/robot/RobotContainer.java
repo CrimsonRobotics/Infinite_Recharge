@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BeginCPSpin;
 import frc.robot.commands.ColorDetect;
 import frc.robot.commands.EndCPSpin;
+import frc.robot.commands.LowerPanelSpinner;
+import frc.robot.commands.RaisePanelSpinner;
+import frc.robot.commands.SpinLeft;
+import frc.robot.commands.SpinRight;
 import frc.robot.commands.StartCPSpin;
 import frc.robot.subsystems.ControlPanel;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,12 +36,29 @@ public class RobotContainer {
   private final Joystick operatorL = new Joystick(2);
 
   private final JoystickButton raisePanelSpinner = new JoystickButton(operatorL, 13);
+  private final JoystickButton rotationControl = new JoystickButton(operatorL, 11);
+  private final JoystickButton positionControl = new JoystickButton(operatorL, 16);
+  private final JoystickButton spinnerLeftFast = new JoystickButton(operatorL, 7);
+  private final JoystickButton spinnerRightFast = new JoystickButton(operatorL, 6);
+  private final JoystickButton spinnerLeft = new JoystickButton(operatorL, 8);
+  private final JoystickButton spinnerRight = new JoystickButton(operatorL, 9);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Control panel
-    raisePanelSpinner.whenPressed(new )
+    raisePanelSpinner.whenPressed(new RaisePanelSpinner());
+    raisePanelSpinner.whenReleased(new LowerPanelSpinner());
+
+    spinnerLeftFast.whenPressed(new SpinLeft(.6));
+    spinnerLeftFast.whenReleased(new SpinLeft(0));
+    spinnerRightFast.whenPressed(new SpinRight(.6));
+    spinnerRightFast.whenReleased(new SpinRight(0));
+
+    spinnerLeft.whenPressed(new SpinLeft(.3));
+    spinnerLeft.whenReleased(new SpinLeft(0));
+    spinnerRight.whenPressed(new SpinRight(.3));
+    spinnerRight.whenReleased(new SpinRight(0));
 
     configureButtonBindings();
    // controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
