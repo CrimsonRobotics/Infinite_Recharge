@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class IntakeArmToggle extends CommandBase {
+public class IntakeArmDown extends CommandBase {
   /**
-   * Creates a new IntakeArmToggle.
+   * Creates a new IntakeArmUp.
    */
-  public IntakeArmToggle() {
+  public IntakeArmDown() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake);
   }
@@ -27,7 +27,7 @@ public class IntakeArmToggle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.IntakeArmToggle();
+    Robot.intake.LowerIntakeArm();
   }
 
   // Called once the command ends or is interrupted.

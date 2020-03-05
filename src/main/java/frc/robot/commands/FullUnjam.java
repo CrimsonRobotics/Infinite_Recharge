@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class IntakeStop extends CommandBase {
+public class FullUnjam extends CommandBase {
   /**
-   * Creates a new IntakeIn.
+   * Creates a new FullUnjam.
    */
-  public IntakeStop() {
+  public FullUnjam() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake);
   }
@@ -27,9 +27,8 @@ public class IntakeStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // System.out.println("Intake Stop");
-    Robot.intake.IntakeStop();
-    Robot.outtake.OuttakeStop();
+    Robot.intake.IntakeOut(.3);
+    Robot.outtake.OuttakeReverse(.3);
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +39,6 @@ public class IntakeStop extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

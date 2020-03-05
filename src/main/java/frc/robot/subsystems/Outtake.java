@@ -18,7 +18,7 @@ public class Outtake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  public final double outtakeMoveSpeed = -.2;
+  public final double outtakeMoveSpeed = -.45;
   public final double outtakeShootSpeed = -.8;
 
   public CANSparkMax outtake;
@@ -42,13 +42,13 @@ public class Outtake extends SubsystemBase {
     outtake.set(outtakeShootSpeed);
   }
 
-  public void OuttakeReverse() { //Outtake reverse
+  public void OuttakeReverse(double speed) { //Outtake reverse
     System.out.println("Reverse outtake");
-    outtake.set(-outtakeMoveSpeed);
+    outtake.set(-speed);
   }
 
   public void OuttakeStop() { //Stops conveyor
-    // System.out.println("Stopping outtake");
+    System.out.println("Stopping outtake");
     outtake.set(0);
   }
 

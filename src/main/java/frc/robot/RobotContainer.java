@@ -11,12 +11,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeArmToggle;
+import frc.robot.commands.FullUnjam;
+import frc.robot.commands.IntakeArmDown;
+import frc.robot.commands.IntakeArmUp;
 import frc.robot.commands.IntakeCatchExtra;
 import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.OuttakeSequence;
 import frc.robot.commands.OuttakeShoot;
+import frc.robot.commands.OuttakeSlowIn;
 import frc.robot.commands.OuttakeStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Outtake;
@@ -35,13 +39,19 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick joystickR = new Joystick(0);
-  public Joystick joystickL = new Joystick(1);
+  public Joystick joystickR = new Joystick(1);
+  public Joystick joystickL = new Joystick(0);
 
-  public JoystickButton intakeIn = new JoystickButton(joystickL, 1);
-  public JoystickButton unjamButton = new JoystickButton(joystickL, 2);
-  public JoystickButton intakeToggleArm = new JoystickButton(joystickL, 3);
-  public JoystickButton outtakeButton = new JoystickButton(joystickR, 1);
+  public Joystick operatorR = new Joystick(3);
+  public Joystick operatorL = new Joystick(2);
+
+  public JoystickButton intakeIn = new JoystickButton(operatorL, 2);
+  public JoystickButton unjamButton = new JoystickButton(operatorL, 4);
+  public JoystickButton fullUnjam = new JoystickButton(operatorL, 3);
+  public JoystickButton intakeToggleArm = new JoystickButton(operatorL, 1);
+  // public JoystickButton outtakeSlowIn = new JoystickButton(operatorL, 4);
+
+  public JoystickButton outtakeShoot = new JoystickButton(operatorR, 1);
 
   public boolean intakeArmUp = true;
 
@@ -65,16 +75,20 @@ public class RobotContainer {
     intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
     intakeIn.whenReleased(new IntakeCatchExtra());
 
-    intakeToggleArm.whenPressed(new IntakeArmToggle());
+    intakeToggleArm.whenPressed(new IntakeArmDown());
+    intakeToggleArm.whenReleased(new IntakeArmUp());
+
+    unjamButton.whenPressed(new IntakeReverse(.4));
+    unjamButton.whenReleased(new IntakeStop());
+
+    fullUnjam.whenPressed(new FullUnjam());
+    fullUnjam.whenReleased(new IntakeStop());
 
     //Outtake
-    outtakeButton.whenPressed(new OuttakeSequence());
-    outtakeButton.whenReleased(new OuttakeStop());
+    outtakeShoot.whenPressed(new OuttakeSequence());
+
     // Configure the button bindings
     configureButtonBindings();
-
-    // Robot.outtake.setDefaultCommand(new OuttakeStop());
-    // Robot.intake.setDefaultCommand(new IntakeStop());
   }
 
   /**

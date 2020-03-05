@@ -29,7 +29,7 @@ public class OuttakeStop extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Stopping outtake");
-    Robot.m_robotContainer.currentOuttakeSequence.cancel();
+    // Robot.m_robotContainer.currentOuttakeSequence.cancel();
     Robot.outtake.OuttakeStop();
     // CommandScheduler.getInstance().cancel();
   }

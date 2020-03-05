@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class OuttakeShoot extends CommandBase {
   /**
-   * Creates a new IntakeIn.
+   * Creates a new OuttakeShoot.
    */
   public OuttakeShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,10 +24,9 @@ public class OuttakeShoot extends CommandBase {
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled ;P -LeVahn
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Shooting outtake");
     Robot.outtake.OuttakeShoot();
   }
 
@@ -39,6 +38,6 @@ public class OuttakeShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

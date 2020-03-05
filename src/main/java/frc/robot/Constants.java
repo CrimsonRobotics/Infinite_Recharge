@@ -19,7 +19,7 @@ public final class Constants {
     public final static int INTAKE_TOP = 56;
     public final static int INTAKE_BOTTOM = 45;
 
-    public final static double INTAKE_SPEED = -.7;
+    public final static double INTAKE_SPEED = .7;
 
     public final static int OUTTAKE_SPARK = 59;
     public final static int OUTTAKE_SOLENOID = 2;
