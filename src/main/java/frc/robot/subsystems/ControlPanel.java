@@ -56,6 +56,7 @@ public class ControlPanel extends SubsystemBase {
 
   public boolean foundColor = false;
   public boolean currentlySpinning = false;
+  public boolean spinnerUp = false;
 
   CANSparkMax panelSpinner;
   DoubleSolenoid spinnerSolenoid;
@@ -70,6 +71,7 @@ public class ControlPanel extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
+    */
     
     currentlySpinning = false;
     foundColor = false;
@@ -82,7 +84,7 @@ public class ControlPanel extends SubsystemBase {
     colorMatch.addColorMatch(greenMatch);
 
     SmartDashboard.putBoolean("Found color", false);
-    SmartDashboard.putBoolean("Spinning", false);*/
+    SmartDashboard.putBoolean("Spinning", false);
   }
 
   public void StartCPSPin() {
@@ -95,7 +97,18 @@ public class ControlPanel extends SubsystemBase {
     panelSpinner.set(0);
   }
 
- /* public void ColorDetect() {
+  public void raiseSpinner() {
+    spinnerSolenoid.set(Value.kForward);
+    spinnerUp = true;
+  }
+
+  public void lowerSpinner() {
+    spinnerSolenoid.set(Value.kReverse);
+    spinnerUp = false;
+  }
+
+  //Always looping
+  public void ColorDetect() {
     detectedC = colorSense.getColor();
 
     ColorMatchResult match = colorMatch.matchClosestColor(detectedC);
@@ -173,7 +186,7 @@ public class ControlPanel extends SubsystemBase {
       System.out.println("No gamedata");
     }
   }
-  */
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

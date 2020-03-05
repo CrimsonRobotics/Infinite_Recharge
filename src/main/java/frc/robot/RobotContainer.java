@@ -30,14 +30,14 @@ public class RobotContainer {
   
   //Joysticks and buttons
   private final Joystick operatorL = new Joystick(2);
-  private final JoystickButton spinControlPanel = new JoystickButton(operatorL, 1);
+
+  private final JoystickButton raisePanelSpinner = new JoystickButton(operatorL, 13);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Control panel
-    spinControlPanel.whenPressed(new StartCPSpin());
-    spinControlPanel.whenReleased(new EndCPSpin());
+    raisePanelSpinner.whenPressed(new )
 
     configureButtonBindings();
    // controlPanel.setDefaultCommand(new ColorDetect(controlPanel));
