@@ -32,32 +32,30 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public Joystick joystickR = new Joystick(1);
-  public Joystick joystickL = new Joystick(0);
-  public JoystickButton shiftyButton = new JoystickButton(joystickR, 1);
-  //JoystickButton unshiftyButton;
+  public Joystick driverR = new Joystick(1);
+  public Joystick driverL = new Joystick(0);
+
+  public JoystickButton shiftyButton = new JoystickButton(driverL, 1);
 
   public Joystick rightJoystick(){
-    return joystickR;
+    return driverR;
   }
 
   public Joystick leftJoystick(){
-    return joystickL;
+    return driverL;
   }
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    this.joystickR = new Joystick(1);
-    this.joystickL = new Joystick(0);
+    this.driverR = new Joystick(1);
+    this.driverL = new Joystick(0);
+
     shiftyButton.whenPressed(new ShiftHigh());
     shiftyButton.whenReleased(new ShiftLow());
-   // unshiftyButton = new JoystickButton(JoystickL, 2);
-    // Configure the button bindings
+
     configureButtonBindings();
     drivetrain.setDefaultCommand(new Drive(drivetrain, leftJoystick(), rightJoystick()));
-      // A split-stick arcade command, with forward/backward controlled by the left
-      // hand, and turning controlled by the right.
   }
 
 
@@ -67,10 +65,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
-    shiftyButton.whenPressed(new ShiftHigh());
-    shiftyButton.whenReleased(new ShiftLow());
-  //  unshiftyButton.whenPressed(new ShiftLow()); 
+  private void configureButtonBindings() { 
   }
 
 

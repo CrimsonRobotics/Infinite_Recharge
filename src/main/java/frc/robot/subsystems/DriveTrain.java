@@ -40,6 +40,8 @@ public class DriveTrain extends SubsystemBase {
   static DoubleSolenoid shiftyLeft;
   static DoubleSolenoid shiftyRight;
 
+  static DoubleSolenoid test;
+
   public DriveTrain(
     int FL, int ML, int BL,  
     int FR, int MR, int BR,
@@ -64,13 +66,16 @@ public class DriveTrain extends SubsystemBase {
     middleRight.setInverted(true);
 
     diffDrive = new DifferentialDrive(leftMotors, rightMotors);
+
+
+    test = new DoubleSolenoid(mod1, 0, 1);
     
     shiftyLeft = new DoubleSolenoid(mod2, SHIFTYL_IDF, SHIFTYL_IDR);
     shiftyRight = new DoubleSolenoid(mod2, SHIFTYR_IDF, SHIFTYR_IDR);
   }
 
   public void arcadeDrive(final double forwardSpeed, final double turnSpeed){
-    diffDrive.arcadeDrive(forwardSpeed, -turnSpeed);
+    diffDrive.arcadeDrive(-forwardSpeed, -turnSpeed);
   }
 
   public static void ShiftHigh() {
