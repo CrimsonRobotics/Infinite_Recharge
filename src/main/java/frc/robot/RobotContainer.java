@@ -50,9 +50,9 @@ public class RobotContainer {
     raisePanelSpinner.whenPressed(new RaisePanelSpinner());
     raisePanelSpinner.whenReleased(new LowerPanelSpinner());
 
-    spinnerLeftFast.whenPressed(new SpinLeft(.6));
+    spinnerLeftFast.whenPressed(new SpinLeft(.5));
     spinnerLeftFast.whenReleased(new SpinLeft(0));
-    spinnerRightFast.whenPressed(new SpinRight(.6));
+    spinnerRightFast.whenPressed(new SpinRight(.5));
     spinnerRightFast.whenReleased(new SpinRight(0));
 
     spinnerLeft.whenPressed(new SpinLeft(.3));

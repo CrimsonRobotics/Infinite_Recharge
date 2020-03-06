@@ -83,8 +83,8 @@ public class ControlPanel extends SubsystemBase {
     colorMatch.addColorMatch(yellowMatch);
     colorMatch.addColorMatch(greenMatch);
 
-    SmartDashboard.putBoolean("Found color", false);
-    SmartDashboard.putBoolean("Spinning", false);
+    // SmartDashboard.putBoolean("Found color", false);
+    // SmartDashboard.putBoolean("Spinning", false);
   }
 
   public void StartCPSPin() {
@@ -108,93 +108,48 @@ public class ControlPanel extends SubsystemBase {
   }
 
   public void spinLeft(double speed) {
+    // System.out.println("Spin left");
     if (spinnerUp == false) return;
     panelSpinner.set(speed);
   }
 
   public void spinRight(double speed) {
+    // System.out.println("Spin right");
     if (spinnerUp == false) return;
     panelSpinner.set(-speed);
   }
 
   //Always looping
   public void ColorDetect() {
-    detectedC = colorSense.getColor();
-
-    ColorMatchResult match = colorMatch.matchClosestColor(detectedC);
-    String colorString;
-
-    if (match.color == blueMatch) {
-      colorString = "B";
-    } else if (match.color == redMatch) {
-      colorString = "R";
-    } else if (match.color == greenMatch) {
-      colorString = "G";
-    } else if (match.color == yellowMatch) {
-      colorString = "Y";
-    } else {
-      colorString = "Unknown";
-    }
-
-    SmartDashboard.putString("Detected Color", colorString);
-    SmartDashboard.putNumber("Confidence", match.confidence);
-
-    SmartDashboard.putNumber("red: ", detectedC.red);
-    SmartDashboard.putNumber("green: ", detectedC.green);
-    SmartDashboard.putNumber("blue: ", detectedC.blue);
-
-    if (currentlySpinning == true) {
-      SmartDashboard.putBoolean("Spinning", true);
-      panelSpinner.set(.3);
-      if (colorString != "Unknown") {
-        if (match.confidence >= .7) {
-          if (colorString == searchingColor) {
-            currentlySpinning = false;
-            System.out.println("Found color " + searchingColor + " after searching");
-            SmartDashboard.putBoolean("Found color", true);
-          }
-        } 
-      }
-    } else {
-      SmartDashboard.putBoolean("Spinning", false);
-      panelSpinner.set(0);
-    }
-  }
-
-  public void PositionControl() {
-    // Retrieving the color sent to the robot by the field messaging system
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-    // Tell if the robot is already trying to spin the control panel
-    if (currentlySpinning == true) {
-      System.out.println("Control panel mechanism is already spinning");
-      return;
-    }
-
     if (gameData.length() > 0) {
-      currentlySpinning = true;
-      SmartDashboard.putBoolean("Found color", false);
+      // SmartDashboard.putBoolean("Found color", false);
       switch (gameData.charAt(0)) {
       case 'G':
-        SmartDashboard.putString("Spining to color", "Green");
+        SmartDashboard.putString("Spin to color", "Green");
         searchingColor = "G";
         break;
       case 'B':
-        SmartDashboard.putString("Spining to color", "Blue");
+        SmartDashboard.putString("Spin to color", "Blue");
         searchingColor = "B";
         break;
       case 'Y':
-        SmartDashboard.putString("Spining to color", "Yellow");
+        SmartDashboard.putString("Spin to color", "Yellow");
         searchingColor = "Y";
         break;
       case 'R':
-        SmartDashboard.putString("Spining to color", "Red");
+        SmartDashboard.putString("Spin to color", "Red");
         searchingColor = "R";
         break;
       }
     } else {
       System.out.println("No gamedata");
     }
+  }
+
+  public void PositionControl() {
+    // Retrieving the color sent to the robot by the field messaging system
   }
 
   @Override
