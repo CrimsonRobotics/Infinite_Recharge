@@ -27,7 +27,7 @@ public class Climber extends SubsystemBase {
 public static double lastEncoderPosition;
 
   static CANSparkMax elevatorMotor;
-  static CANSparkMax winchMotor;
+  public static CANSparkMax winchMotor;
   static CANSparkMax lateralMotor;
   private static double goalPoint;
   private static int variance = 450;
@@ -74,27 +74,29 @@ public static double lastEncoderPosition;
   }
 
   public void winchStart() {
+    System.out.println("Starting winch");
     winchMotor.set(-.6);
   }
 
   public void winchStop() {
+    System.out.println("Stopping winch");
     winchMotor.set(0);
   }
 
   public void lateralRight() {
-    lateralMotor.set(.4);
-  }
-  
-  public void lateralLeft() {
-    lateralMotor.set(-.4);
-  }
-
-  public void lateralRightFast() {
     lateralMotor.set(.7);
   }
   
-  public void lateralLeftFast() {
+  public void lateralLeft() {
     lateralMotor.set(-.7);
+  }
+
+  public void lateralRightFast() {
+    lateralMotor.set(1);
+  }
+  
+  public void lateralLeftFast() {
+    lateralMotor.set(-1);
   }
 
   public void lateralStop() {

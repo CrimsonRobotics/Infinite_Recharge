@@ -69,7 +69,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putString("Current running command:", CommandScheduler.getInstance().getName());
+    // SmartDashboard.putString("Current running command:", CommandScheduler.getInstance().getName());
+    SmartDashboard.putNumber("Winch current", climber.winchMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Winch speed", climber.winchMotor.get());
   }
 
   /**
