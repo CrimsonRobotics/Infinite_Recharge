@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.ControlPanel;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,11 +26,13 @@ public class Robot extends TimedRobot {
 
   public static Intake intake;
   public static Outtake outtake;
+  public static ControlPanel controlPanel;
+  
 
   public static DriveTrain drivetrain;
   public static Object climberSubsystem;
 
-  public static Climber climber = new Climber(Constants.ELEVATOR_MOTOR);
+  public static Climber climber;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -45,8 +48,9 @@ public class Robot extends TimedRobot {
     Constants.fLID, Constants.mLID, Constants.bLID, Constants.fRID, Constants.mRID, Constants.bRID,
     Constants.mod1ID, Constants.mod2ID,
     Constants.shiftyLIDF, Constants.shiftyLIDR, Constants.shiftyRIDF, Constants.shiftyRIDR);
+    climber = new Climber(Constants.ELEVATOR_MOTOR);
+    controlPanel = new ControlPanel();
     
-    Climber climber = new Climber(Constants.ELEVATOR_MOTOR);
     m_robotContainer = new RobotContainer();
     climber.ElevatorZero();
   }

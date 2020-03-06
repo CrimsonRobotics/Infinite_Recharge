@@ -10,14 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-// import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Outtake;
 import edu.wpi.first.wpilibj2.command.Command;
-// import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.*;
-import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.LowerPanelSpinner;
+import frc.robot.commands.RaisePanelSpinner;
+import frc.robot.commands.SpinLeft;
+import frc.robot.commands.SpinRight;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -40,11 +38,11 @@ public class RobotContainer {
   public Joystick operatorL = new Joystick(2);
 
   // Intake buttons
-  // public JoystickButton intakeIn = new JoystickButton(operatorL, 2);
   public JoystickButton unjamButton = new JoystickButton(operatorL, 4);
   public JoystickButton fullUnjam = new JoystickButton(operatorL, 3);
   public JoystickButton intakeToggleArm = new JoystickButton(operatorL, 1);
 
+  // Climber buttons
   public JoystickButton elevatorUpButton = new JoystickButton(operatorR, 7);
   public JoystickButton elevatorDownButton = new JoystickButton(operatorR, 8);
   public JoystickButton latMotorRightButton = new JoystickButton(operatorR, 13);
@@ -52,6 +50,15 @@ public class RobotContainer {
   public JoystickButton latRightFast = new JoystickButton(operatorR, 14);
   public JoystickButton latLeftFast = new JoystickButton(operatorR, 15);
   public JoystickButton winchStartButton = new JoystickButton(operatorR, 5);
+
+  // Control panel buttons
+  private final JoystickButton raisePanelSpinner = new JoystickButton(operatorL, 13);
+  private final JoystickButton rotationControl = new JoystickButton(operatorL, 11);
+  private final JoystickButton positionControl = new JoystickButton(operatorL, 16);
+  private final JoystickButton spinnerLeftFast = new JoystickButton(operatorL, 7);
+  private final JoystickButton spinnerRightFast = new JoystickButton(operatorL, 6);
+  private final JoystickButton spinnerLeft = new JoystickButton(operatorL, 8);
+  private final JoystickButton spinnerRight = new JoystickButton(operatorL, 9);
   
   // Outtake buttons
   public JoystickButton outtakeShoot = new JoystickButton(operatorR, 1);
@@ -66,16 +73,11 @@ public class RobotContainer {
   public Joystick leftJoystick(){
     return driverL;
   }
-
-  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Intake
-    // intakeIn.whenPressed(new IntakeIn(Constants.INTAKE_SPEED));
-    // intakeIn.whenReleased(new IntakeCatchExtra());
-
     intakeToggleArm.whenPressed(new IntakeArmDown());
     intakeToggleArm.whenReleased(new IntakeCatchExtra());
 
@@ -91,6 +93,7 @@ public class RobotContainer {
     // Drive train
     shiftyButton.whenPressed(new ShiftHigh());
     shiftyButton.whenReleased(new ShiftLow());
+
     //Elevator
     elevatorUpButton.whenPressed(new ElevatorUp());
     elevatorUpButton.whenReleased(new ElevatorStop());
@@ -108,12 +111,24 @@ public class RobotContainer {
     latLeftFast.whenPressed(new LatLeftFast());
     latLeftFast.whenReleased(new LateralMotorStop());
 
+    // Control panel
+    raisePanelSpinner.whenPressed(new RaisePanelSpinner());
+    raisePanelSpinner.whenReleased(new LowerPanelSpinner());
+
+    spinnerLeftFast.whenPressed(new SpinLeft(.5));
+    spinnerLeftFast.whenReleased(new SpinLeft(0));
+    spinnerRightFast.whenPressed(new SpinRight(.5));
+    spinnerRightFast.whenReleased(new SpinRight(0));
+
+    spinnerLeft.whenPressed(new SpinLeft(.3));
+    spinnerLeft.whenReleased(new SpinLeft(0));
+    spinnerRight.whenPressed(new SpinRight(.3));
+    spinnerRight.whenReleased(new SpinRight(0));
+
     configureButtonBindings();
     
     Robot.drivetrain.setDefaultCommand(new Drive());
     Robot.outtake.setDefaultCommand(new OuttakeLoop());
-
-    // Robot.climber.setDefaultCommand(new ElevatorStop());
   }
 
   /**
@@ -123,7 +138,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
   }
 
 
