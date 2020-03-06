@@ -28,7 +28,7 @@ public class FullUnjam extends CommandBase {
   @Override
   public void execute() {
     Robot.intake.IntakeOut(.3);
-    Robot.outtake.OuttakeReverse(.3);
+    Robot.outtake.OuttakeReverse(-.3);
   }
 
   // Called once the command ends or is interrupted.

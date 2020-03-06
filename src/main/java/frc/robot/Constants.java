@@ -20,7 +20,7 @@ public final class Constants {
     public final static int INTAKE_TOP = 56;
     public final static int INTAKE_BOTTOM = 45;
 
-    public final static double INTAKE_SPEED = .7;
+    public final static double INTAKE_SPEED = .35;
 
     public final static int OUTTAKE_SPARK = 59;
     public final static int OUTTAKE_SOLENOID = 2;
@@ -50,4 +50,7 @@ public final class Constants {
     public final static int shiftyRIDF = 2;
     public final static int shiftyRIDR = 3;
 
+    public static int ELEVATOR_MOTOR = 58;
+    public static int WINCH_MOTOR = 47;
+    public static int lateralMotor = 46;
 }

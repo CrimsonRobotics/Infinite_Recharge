@@ -10,13 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Drive extends CommandBase {
+public class WinchStart extends CommandBase {
   /**
-   * Creates a new Drive.
+   * Creates a new WinchStart.
    */
-  public Drive() {
-    addRequirements(Robot.drivetrain);
+  public WinchStart() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +27,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.arcadeDrive(Robot.m_robotContainer.driverL.getY(), Robot.m_robotContainer.driverR.getX());
+    Robot.climber.winchStart();
   }
 
   // Called once the command ends or is interrupted.
@@ -38,6 +38,8 @@ public class Drive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+      return true;
+    
+    // return true;
   }
 }

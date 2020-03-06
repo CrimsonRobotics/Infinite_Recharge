@@ -11,14 +11,19 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.commands.OuttakeReverse;
+import frc.robot.commands.OuttakeStop;
 
 public class Outtake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
-  public final double outtakeMoveSpeed = -.45;
+  public final double outtakeMoveSpeed = -.23;
   public final double outtakeShootSpeed = -.8;
 
   public CANSparkMax outtake;
@@ -32,6 +37,15 @@ public class Outtake extends SubsystemBase {
 
     outtakeDoorSolenoid = new Solenoid(Constants.OUTTAKE_PCM1, Constants.OUTTAKE_SOLENOID);
     outtake = new CANSparkMax(Constants.OUTTAKE_SPARK, MotorType.kBrushless);
+  }
+
+  public void OuttakeLoop() {
+    double current = outtake.getOutputCurrent();
+    SmartDashboard.putNumber("Outtake conveyer current", current);
+
+    if (current >= 25) {
+      OuttakeStop();
+    }
   }
 
   public void OuttakeShoot() { //Outtake forwards

@@ -9,14 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.subsystems.Climber;
 
-public class Drive extends CommandBase {
+public class ElevatorStop extends CommandBase {
   /**
-   * Creates a new Drive.
+   * Creates a new WinchStop.
+ * @param climber
    */
-  public Drive() {
-    addRequirements(Robot.drivetrain);
+  public ElevatorStop() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +29,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.arcadeDrive(Robot.m_robotContainer.driverL.getY(), Robot.m_robotContainer.driverR.getX());
+    Climber.elevatorStop();
   }
 
   // Called once the command ends or is interrupted.
@@ -38,6 +40,6 @@ public class Drive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

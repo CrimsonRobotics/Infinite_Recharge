@@ -29,7 +29,7 @@ public class OuttakeSequence extends SequentialCommandGroup {
     new OuttakeDoorOpen(), 
     new WaitCommand(.25), 
     new OuttakeShoot(), 
-    new WaitCommand(3), 
+    new WaitCommand(1.2), 
     new OuttakeStop(), 
     new OuttakeDoorClose());
   }
