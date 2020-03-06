@@ -74,7 +74,7 @@ public static double lastEncoderPosition;
   }
 
   public void winchStart() {
-    winchMotor.set(.6);
+    winchMotor.set(-.6);
   }
 
   public void winchStop() {
