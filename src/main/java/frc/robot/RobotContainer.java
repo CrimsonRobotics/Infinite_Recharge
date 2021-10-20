@@ -47,10 +47,10 @@ public class RobotContainer {
   // Climber buttons
   public JoystickButton elevatorUpButton = new JoystickButton(operatorR, 7);
   public JoystickButton elevatorDownButton = new JoystickButton(operatorR, 8);
-  public JoystickButton latMotorRightButton = new JoystickButton(operatorR, 14);
-  public JoystickButton latMotorLeftButton = new JoystickButton(operatorR, 15);
-  public JoystickButton latRightFast = new JoystickButton(operatorR, 13);
-  public JoystickButton latLeftFast = new JoystickButton(operatorR, 12);
+  public JoystickButton latMotorRightButton = new JoystickButton(operatorR, 13);
+  public JoystickButton latMotorLeftButton = new JoystickButton(operatorR, 12);
+  public JoystickButton latRightFast = new JoystickButton(operatorR, 14);
+  public JoystickButton latLeftFast = new JoystickButton(operatorR, 15);
   public JoystickButton winchStartButton = new JoystickButton(operatorR, 5);
 
   // Control panel buttons
