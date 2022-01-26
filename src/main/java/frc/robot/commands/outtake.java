@@ -7,10 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class outtakeStop extends CommandBase {
-  /** Creates a new intakeStop. */
-  public outtakeStop() {
+public class outtake extends CommandBase {
+
+
+  /** Creates a new outtake. */
+  public outtake() {
     addRequirements(Robot.manipulator);
+   
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -21,7 +24,7 @@ public class outtakeStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.manipulator.outtakeStop();
+    Robot.manipulator.outtake();
   }
 
   // Called once the command ends or is interrupted.
