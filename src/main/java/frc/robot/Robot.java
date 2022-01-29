@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ArcadeDriver;
+import frc.robot.subsystems.Drivetrain2;
 import frc.robot.subsystems.Manipulator;
 
 /**
@@ -19,6 +21,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static Manipulator manipulator;
+  public static Drivetrain2 m_drivetrain2;
+  public static ArcadeDriver m_arcadeDriver;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -30,6 +34,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
    
     manipulator = new Manipulator();
+    m_drivetrain2 = new Drivetrain2();
+    m_arcadeDriver = new ArcadeDriver(m_drivetrain2);
 
     new RobotContainer();
   }

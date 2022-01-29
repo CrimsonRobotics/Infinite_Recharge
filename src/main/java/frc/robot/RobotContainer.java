@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ArcadeDriver;
 import frc.robot.commands.intakeArmDown;
 import frc.robot.commands.intakeArmUp;
 import frc.robot.commands.intakeIn;
@@ -25,7 +26,9 @@ public class RobotContainer {
 
   public static Joystick operatorR = new Joystick(3);
   public static Joystick operatorL = new Joystick(2);
-
+  public static Joystick m_lstick = new Joystick(0);
+  public static Joystick m_rstick = new Joystick(1);
+  
   public static JoystickButton intakeButton = new JoystickButton(operatorL, 1);
   public static JoystickButton outtakeButton = new JoystickButton(operatorR, 1);
   public static JoystickButton intakeArmDownButton = new JoystickButton(operatorL, 2);
@@ -39,6 +42,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    Robot.m_drivetrain2.setDefaultCommand(new ArcadeDriver(Robot.m_drivetrain2));
   }
 
   /**

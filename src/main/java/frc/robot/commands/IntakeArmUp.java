@@ -10,8 +10,9 @@ import frc.robot.Robot;
 public class intakeArmUp extends CommandBase {
   /** Creates a new intakeArmUp. */
   public intakeArmUp() {
-    addRequirements(Robot.manipulator);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.manipulator);
+
   }
 
   // Called when the command is initially scheduled.

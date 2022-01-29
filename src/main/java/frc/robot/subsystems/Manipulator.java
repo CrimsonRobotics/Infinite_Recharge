@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -21,7 +22,7 @@ public class Manipulator extends SubsystemBase {
   
   public DoubleSolenoid intakeSolenoid;
   public Solenoid outtakeSolenoid;
-
+  public Solenoid testSolenoid;
   public boolean doorOpen = false;
 
   double csSpeed = 0.25;
@@ -46,6 +47,7 @@ public class Manipulator extends SubsystemBase {
 
       intakeSolenoid = new DoubleSolenoid(Constants.PCM, PneumaticsModuleType.CTREPCM, Constants.intakeSolenoid1, Constants.intakeSolenoid2);
       outtakeSolenoid = new Solenoid(Constants.PCM, PneumaticsModuleType.CTREPCM, Constants.outtakeSolenoid);
+
 
       doorOpen = false;
       
